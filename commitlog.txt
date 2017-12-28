@@ -1,0 +1,3 @@
+Log starts after 4 first commits.
+
+13:22 2017-10-31, npm version 1.0.0.
