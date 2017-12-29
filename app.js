@@ -9,7 +9,7 @@ var bodyParser   = require('body-parser');
 
 // Require routes modules for API
 var api     = require('./routes/api');
-var mongodb = require('./routes/mongodb');
+var sessionRoutes = require('./routes/session');
 
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(session({
 }));
 // use specific route for the API-modules
 app.use('/api', api);
-app.use('/session', mongodb);
+app.use('/session', sessionRoutes);
 
 // Routes for the client, these needs to be added if we want to load the
 // react-page with HTTP-request since it's a "SPA".

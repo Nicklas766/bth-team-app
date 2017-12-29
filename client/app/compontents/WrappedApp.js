@@ -17,7 +17,12 @@ const Navbar = (props) => {
 
 const Header = (props) => (
     <div className='header'>
-        <Navbar menu={[{text: "Hem", to: "/"}]}/>
+        <Navbar menu={[
+            {text: "Hem", to: "/"},
+            {text: "Login", to: "/login"},
+            {text: "Create", to: "/create"},
+
+        ]}/>
     </div>
 );
 
@@ -32,7 +37,7 @@ const Footer = (props) => (
 class WrappedApp extends React.Component {
     render() {
         return (
-            <div className='wrap-container' style={{ backgroundImage: "url('../images/notebook.jpg')" }}>
+            <div className='container'>
                 <Header />
                 {this.props.children}
                 <Footer />

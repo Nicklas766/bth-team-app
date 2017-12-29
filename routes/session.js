@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const dsn = process.env.DBWEBB_DSN || "mongodb://192.168.99.100:27017/user";
-const users  = require('mongo-connecter').init(dsn, 'users');
+const users = require('mongo-connecter').init(dsn, 'users');
 
 
 // Gets the user based on name and checks if correct password
 router.post('/login', async (req, res) => {
-    // Get params from post
     const name = req.body.name;
     const pass = req.body.pass;
 
@@ -17,9 +16,10 @@ router.post('/login', async (req, res) => {
             req.session.user = name;
             return res.status(200).send('Success!');
         }
+
         return res.status(401).send('Invalid details!');
     } catch (err) {
-        return res.status(500).send(err);
+        return res.status(404).send(err);
     }
 });
 
@@ -30,7 +30,7 @@ router.post('/logout', (req, res) => {
     res.status(200).send('Session.user set to null');
 });
 
-// denied
+// A route that shows that you was denied entry
 router.get('/denied', (req, res) => {
     res.status(403).send('denied, youre not logged in');
 });
@@ -48,7 +48,9 @@ const checkIsLogin = (req, res, next) => {
 // Returns user data, if not logged in "checkIsLogin()" will take care of that
 router.get('/profile', checkIsLogin, async (req, res) => {
     try {
-        const user = await users.fetchOne({name: req.session.user});
+        const user = await users.fetchOne({
+            name: req.session.user
+        });
 
         return res.status(200).json(user);
     } catch (err) {
@@ -56,41 +58,5 @@ router.get('/profile', checkIsLogin, async (req, res) => {
     }
 });
 
-
-// Inserts users to collection while returning user object. If exists return error code
-router.post("/insert", async (req, res) => {
-    const name = req.body.name;
-    const pass = req.body.pass;
-
-    try {
-        // Check if user already exists
-        const user = await users.fetchOne({name: name});
-
-        if (user !== null) {
-            return res.status(401).send('User already exists');
-        }
-        // insert and fetch user
-        const newUser = await users.collectionDo(
-            col => col.insert({name: name, pass: pass}),
-            col => col.findOne({name: name})
-        );
-
-        return res.status(200).json(newUser);
-    } catch (err) {
-        console.log(err);
-        res.json(err);
-    }
-});
-
-
-// delete everything in collection "users"
-router.post('/reset', async (req, res) => {
-    try {
-        await users.reset();
-        res.status(200).send('collection reset complete');
-    } catch (err) {
-        return res.status(500).send(err);
-    }
-});
 
 module.exports = router;

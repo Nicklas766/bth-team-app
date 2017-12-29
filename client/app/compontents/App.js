@@ -12,7 +12,11 @@ var WrappedApp = require('./WrappedApp');
 // Route Paths
 var Home = require('./page/Home');
 
+// Login and Create
+var Login = require('./login/Login');
+var Create = require('./login/Create');
 
+// Protected paths in express.js
 
 
 class App extends React.Component {
@@ -22,6 +26,8 @@ class App extends React.Component {
                 <WrappedApp>
                     <Switch>
                         <Route exact path='/' component={Home} />
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/create' component={Create} />
                         <Route render={() => <div><h1>404 not found</h1></div>} />
                     </Switch>
                 </WrappedApp>

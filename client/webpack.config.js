@@ -24,7 +24,7 @@ var config = {
     devServer: {
         //   historyApiFallback: true,
         proxy: {
-            "**": "http://192.168.99.100:1337"
+            "**": "http://localhost:1337"
         }
     },
     plugins: [new HtmlWebpackPlugin({template: 'app/index.html'})]

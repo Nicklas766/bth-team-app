@@ -12,29 +12,25 @@ module.exports = {
         const data = await axios.get("/api/users");
         return data.data;
     },
-    fetchReports: async function (id = "") {
-        const reports = await axios.get("/api/report/" + id);
-        return reports.data;
-    },
 
-    // mongoDB
-    fetchPeople: async function () {
-        const data = await axios.get("/mongodb/get");
-        return data.data;
+    // Login, then return 200 or 401 or 404
+    login: async function (params) {
+        try {
+            const response = await axios.post("/session/login", params);
+            return response.status;
+        } catch(err) {
+            return err.response.status;
+        }
     },
-    postPeople: async function (params) {
-        console.log("IM STARTED")
-        const data = await axios.post("/mongodb/insert", params)
-        return data.data;
+    // Creates account, then return 200 or 401 code
+    createAccount: async function (params) {
+        try {
+            const response = await axios.post("/api/insert", params);
+            return response.status;
+        } catch(err) {
+            return err.response.status;
+        }
 
-    },
-    deletePerson: async function (id) {
-        const data = await axios.post("/mongodb/delete", {id: id})
-        return data.data;
-
-    },
-    updatePerson: function (params) {
-        axios.post("/mongodb/update", params);
     },
 
     resetPeople: async function () {
