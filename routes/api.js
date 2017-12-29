@@ -15,9 +15,9 @@ const validatePost = (req, res, next) => {
     }
 
     return next();
-
-}
+};
 // Inserts users to collection while returning user object. If exists return error code
+
 router.post("/insert", validatePost, async (req, res) => {
     const name = req.body.name;
     const pass = req.body.pass;
@@ -38,6 +38,7 @@ router.post("/insert", validatePost, async (req, res) => {
             }),
             col => col.findOne({name: name})
         );
+
         return res.status(200).json(newUser);
     } catch (err) {
         res.status(500).json(err);

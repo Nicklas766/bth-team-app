@@ -18,7 +18,6 @@ describe('Reset database', () => {
 });
 
 describe('Check so everything works when creating user', () => {
-
     it('should create nicklas and return user object', (done) => {
         agent.post("/api/insert")
             .set('Accept', 'application/json')

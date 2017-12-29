@@ -51,39 +51,42 @@ describe("Try out game with the socket-mansion", () => {
             socket.emit('join room', 'room1');
 
             assert.equal(true, socket.connected);
-
         });
 
         socket.on('new room1', (text) => {
-            assert.equal(text, 'nicklas joined the game!');
-            socket.disconnect()
-            done()
+            assert.equal(text, 'nicklas joined the game');
+            socket.disconnect();
+            done();
         });
-
     });
 
 
-    it('should create game room and greet user', (done) => {
-        var socket = io(socketURL, options);
+    it('should create game room with two users, heal warrior 30', (done) => {
+        var healer  = io(socketURL, options);
+        var warrior = io(socketURL, options);
 
 
-        socket.on('connect', (done) => {
-            socket.emit('setup user', {name: "nicklas"});
-            socket.emit('create room', 'room1', 'game');
-            socket.emit('join room', 'room1');
+        warrior.on('connect', (done) => {
+            // Setup user, room and join
+            warrior.emit('setup user', {name: "warrior"});
+            warrior.emit('create room', 'room2', 'game');
+            warrior.emit('join room', 'room2');
 
-            assert.equal(true, socket.connected);
-
+            healer.on('connect', (done) => {
+                // Setup user, join and heal
+                healer.emit('setup user', {name: "healer"});
+                healer.emit('join room', 'room2');
+                // Heal in room2, warrior as target
+                healer.emit('heal room2', 'warrior');
+            });
         });
 
-        socket.on('new room1', (text) => {
-            assert.equal(text, 'nicklas joined the game!');
-            socket.disconnect()
-            done()
+        warrior.on('heal room2', (target, heal) => {
+            assert.equal(target, 'warrior');
+            assert.equal(heal, 30);
+            warrior.disconnect();
+            healer.disconnect();
+            done();
         });
-
     });
-
-
-
 });

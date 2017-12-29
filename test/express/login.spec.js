@@ -11,7 +11,6 @@ var app = require('../../app.js');
 var agent = require('supertest').agent(app);
 
 describe('Reset db, 403 response for /denied, fail to login', () => {
-
     it('should reset database and return 200', (done) => {
         agent.post("/api/reset")
             .expect(200, done);
@@ -34,7 +33,6 @@ describe('Reset db, 403 response for /denied, fail to login', () => {
 });
 
 describe('Create a user and login with it', () => {
-
     it('should create user and return user object', (done) => {
         agent.post("/api/insert")
             .set('Accept', 'application/json')
@@ -71,7 +69,6 @@ describe('Create a user and login with it', () => {
 });
 
 describe('Try out the session and login', () => {
-
     it('should return user nicklas as an object', (done) => {
         agent.get("/session/profile")
             .set('Accept', 'application/json')
