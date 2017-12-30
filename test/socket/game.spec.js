@@ -30,7 +30,7 @@ var options = {
 
 
 
-describe("Try out game with the socket-mansion", () => {
+describe("Try out basic game actions with the socket-mansion", () => {
     before(() => {
         socketMansion(server, modules);
         server.listen(3000);
@@ -45,7 +45,7 @@ describe("Try out game with the socket-mansion", () => {
         var socket = io(socketURL, options);
 
 
-        socket.on('connect', (done) => {
+        socket.on('connect', () => {
             socket.emit('setup user', {name: "nicklas"});
             socket.emit('create room', 'room1', 'game');
             socket.emit('join room', 'room1');
@@ -62,31 +62,72 @@ describe("Try out game with the socket-mansion", () => {
 
 
     it('should create game room with two users, heal warrior 30', (done) => {
-        var healer  = io(socketURL, options);
-        var warrior = io(socketURL, options);
+        var client1 = io(socketURL, options);
 
+        client1.on('connect', () => {
+            var client2  = io(socketURL, options);
 
-        warrior.on('connect', (done) => {
-            // Setup user, room and join
-            warrior.emit('setup user', {name: "warrior"});
-            warrior.emit('create room', 'room2', 'game');
-            warrior.emit('join room', 'room2');
+            client2.on('connect', () => {
+                client1.emit('setup user', {name: "healer"});
+                client2.emit('setup user', {name: "warrior"});
 
-            healer.on('connect', (done) => {
-                // Setup user, join and heal
-                healer.emit('setup user', {name: "healer"});
-                healer.emit('join room', 'room2');
-                // Heal in room2, warrior as target
-                healer.emit('heal room2', 'warrior');
+                client1.emit('create room', 'room2', 'game');
+
+                client1.emit('join room', 'room2');
+                client2.emit('join room', 'room2');
+
+                // We use a third client only so we are sure we've joined room for
+                // both client1 and client2.
+                var client3 = io(socketURL, options);
+
+                client3.on('connect', () => {
+                    client1.emit('heal room2', 'warrior');
+
+                    client2.on('heal room2', (target, heal) => {
+                        assert.equal(target, 'warrior');
+                        assert.equal(heal, 30);
+                        client1.disconnect();
+                        client2.disconnect();
+                        client3.disconnect();
+                        done();
+                    });
+                });
             });
         });
+    });
 
-        warrior.on('heal room2', (target, heal) => {
-            assert.equal(target, 'warrior');
-            assert.equal(heal, 30);
-            warrior.disconnect();
-            healer.disconnect();
-            done();
+    it('should attack the boss with 50 dmg and return 450 hp', (done) => {
+        var client1 = io(socketURL, options);
+
+        client1.on('connect', () => {
+            var client2  = io(socketURL, options);
+
+            client2.on('connect', () => {
+                client1.emit('setup user', {name: "healer"});
+                client2.emit('setup user', {name: "warrior"});
+
+                client1.emit('create room', 'room3', 'game');
+
+                client1.emit('join room', 'room3');
+                client2.emit('join room', 'room3');
+
+                // We use a third client only so we are sure we've joined room for
+                // both client1 and client2.
+                var client3 = io(socketURL, options);
+
+                client3.on('connect', () => {
+                    client1.emit('attack room3');
+
+                    client2.on('attack room3', (bossHealth, dmg) => {
+                        assert.equal(bossHealth, 450);
+                        assert.equal(dmg, 50);
+                        client1.disconnect();
+                        client2.disconnect();
+                        client3.disconnect();
+                        done();
+                    });
+                });
+            });
         });
     });
 });
