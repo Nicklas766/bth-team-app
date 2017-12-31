@@ -17,9 +17,7 @@ var server = http.createServer(app);
 var io        = require('socket.io-client');
 const game    = require('../../src/game.js').game;
 const socketMansion = require('socket-mansion');
-
-// test setup for socket-mansion rooms
-const setupRoomTest = require('./setup.js').setupRoomTest;
+const setupRoomTest = require('socket-mansion').setupRoomTest;
 
 // Will be used as parameter for socketMansion
 const modules = [{module: game, name: "game"}];
@@ -66,14 +64,17 @@ describe("Try out basic game actions with the socket-mansion", () => {
 
     it('Should start as healers turn then heal warrior 30 hp', (done) => {
         const testFunc = (client1, client2) => (done) => {
-            client2.on('start room2', (playerName) => {
-                assert.equal(playerName, 'healer');
+            client2.on('start room2', (obj) => {
+                assert.equal(obj.players[0].name, 'player1');
+                assert.equal(obj.players[1].name, 'player2');
+                assert.equal(obj.playerTurn, 'player1');
 
-                client1.emit('heal room2', 'warrior');
+                client1.emit('heal room2', 'player2');
 
-                client2.on('heal room2', (target, heal) => {
-                    assert.equal(target, 'warrior');
-                    assert.equal(heal, 30);
+                client2.on('heal room2', (obj) => {
+                    console.log(obj)
+                    assert.equal(obj.name, 'player2');
+                    assert.equal(obj.hp, 280);
                     client1.disconnect();
                     client2.disconnect();
                     done();
@@ -86,20 +87,23 @@ describe("Try out basic game actions with the socket-mansion", () => {
             options: options,
             func: testFunc,
             done: done,
-            room: 'room2'
+            room: 'room2',
+            module: 'game'
         });
     });
 
     it('should attack the boss with 50 dmg and return 450 hp', (done) => {
         const testFunc = (client1, client2) => (done) => {
-            client2.on('start room3', (playerName) => {
-                assert.equal(playerName, 'healer');
+            client2.on('start room3', (obj) => {
+                assert.equal(obj.players[0].name, 'player1');
+                assert.equal(obj.players[1].name, 'player2');
+                assert.equal(obj.playerTurn, 'player1');
 
                 client1.emit('attack room3');
 
-                client2.on('attack room3', (bossHealth, dmg) => {
-                    assert.equal(bossHealth, 450);
-                    assert.equal(dmg, 50);
+                client2.on('attack room3', (boss) => {
+                    assert.equal(boss.hp, 450);
+                    assert.equal(boss.name, 'Orc');
                     client1.disconnect();
                     client2.disconnect();
                     done();
@@ -112,7 +116,8 @@ describe("Try out basic game actions with the socket-mansion", () => {
             options: options,
             func: testFunc,
             done: done,
-            room: 'room3'
+            room: 'room3',
+            module: 'game'
         });
     });
 });

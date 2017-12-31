@@ -7,6 +7,15 @@
 var app   = require('../app');
 var debug = require('debug')('redovisa:server');
 var http  = require('http');
+const socketMansion    = require('socket-mansion');
+const game             = require('../src/game').game
+
+const modules = [
+    {
+        module: game,
+        name: "game"
+    },
+]
 
 
 // https://codeburst.io/isomorphic-web-app-react-js-express-socket-io-e2f03a469cd3
@@ -32,6 +41,7 @@ app.set('port', port);
 
 // Create server and make socket listen to server
 var server      = http.createServer(app);
+socketMansion(server, modules)
 
 
 /**
