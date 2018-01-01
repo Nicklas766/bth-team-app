@@ -45,3 +45,89 @@ footer {
     width: 100%;
     color: #EDEDEE;
 }
+
+.boss-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    width: 80%;
+    justify-content: center;
+    margin: auto;
+}
+
+.player-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 250px;
+    width: 90%;
+    margin: 5% auto;
+}
+
+/* Action bar */
+
+.action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    background: black;
+}
+
+.spell-bar {
+    display: flex;
+    background: grey;
+    justify-content: center;
+}
+
+.spell {
+    display: flex;
+    width: 64px;
+    height: 64px;
+    margin: 0 2%;
+    background: green;
+    background-size: 100% 100%;
+    border-radius: 5px;
+
+}
+
+
+/* Health bar */
+
+.health-bar {
+    display: flex;
+    flex-wrap: wrap;
+    height:100%;
+    width: 25%;
+
+}
+.health-bar p {
+    background: red;
+    width:100%;
+    margin: 0;
+    height: 12.5%;
+}
+
+.health-bar img {
+    height: 75%;
+    width: 100%;
+}
+
+.heal {
+    animation-name: heal;
+    animation-duration: 3s;
+}
+
+.dmg {
+    animation-name: dmg;
+    animation-duration: 3s;
+}
+@keyframes heal {
+    0%   {box-shadow: none;}
+   50%  {box-shadow: 1px 1px 100px 1px yellow;}
+   100% {box-shadow: none;}
+}
+
+@keyframes dmg {
+    0%   {box-shadow: none;}
+   50%  {box-shadow: 1px 1px 100px 1px red;}
+   100% {box-shadow: none;}
+}

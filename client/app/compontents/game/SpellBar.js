@@ -19,9 +19,8 @@ class Spellbar extends React.Component {
             playerTurn: this.props.playerTurn,
             yourTurn: false
         };
+        this.heal = this.heal.bind(this);
         this.attack = this.attack.bind(this);
-        this.healYourself = this.healYourself.bind(this);
-        this.healFriend = this.healFriend.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +33,11 @@ class Spellbar extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.playerTurn === this.state.name) {
-            this.setState({yourTurn: true});
+            console.log('Its a new turn for', nextProps.playerTurn)
+            this.setState({
+                yourTurn: true,
+                playerTurn: nextProps.playerTurn
+            });
         }
     }
 
@@ -48,26 +51,25 @@ class Spellbar extends React.Component {
 
     attack() {
         this.state.socket.emit(`attack ${this.state.id}`);
+        this.nextTurn();
+    }
+    heal(event) {
+        console.log(event.target.value)
+        this.state.socket.emit(`heal ${this.state.id}`, event.target.value);
+        this.nextTurn();
     }
 
-    healYourself() {
-        this.state.socket.emit(`heal ${this.state.id}`, this.state.name);
-    }
-
-    healFriend() {
-        this.state.socket.emit(`heal ${this.state.id}`, this.state.friend);
-    }
 
     render() {
-        return (<div>
+        const {friend, name, playerTurn} = this.state;
+
+        return (<div style={{width: '100%'}}>
             {
-                this.state.yourTurn && <div>
-                    <h1>Game board</h1>
-                    <button onClick={this.attack}>Attack</button>
-                    <button onClick={this.healYourself}>Heal yourself</button>
-                    <button onClick={this.healFriend}>Heal friend</button>
-                </div>)
-            }
+                this.state.yourTurn && <div className='spell-bar'>
+                    <button onClick={this.attack} style={{backgroundImage: `url(images/sword.png)`}} className='spell' />
+                    <button value={name} onClick={this.heal} style={{backgroundImage: `url(images/add.png)`}} className='spell' />
+                    <button value={friend} onClick={this.heal} style={{backgroundImage: `url(images/charity.png)`}} className='spell' />
+            </div>}
         </div>);
     }
 }

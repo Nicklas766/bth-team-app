@@ -34,12 +34,16 @@ game.prototype.heal = function (socket) {
     socket.on(`heal ${this.id}`, (target) => {
         this.players = changePlayerHealth(this.players, target, 30);
 
-        const targetPlayer = this.players.find(player => player.name === target);
+        const updatedPlayer = this.players.find(player => player.name === target);
         console.log('OIII-----------------------------------')
-        console.log(targetPlayer)
+
+        // Find out who's the next player, or false which equals loss of game
+        const otherPlayer = this.players.filter(player => player.id !== socket.id)[0];
+        const currPlayer  = this.players.find(player => player.id === socket.id);
+        const nextPlayer  = otherPlayer.hp > 0 ? otherPlayer.name : (currPlayer.hp > 0 ? currPlayer.name : false);
 
         // Emit heal to client so it can update
-        this.io.sockets.in(this.id).emit(`heal ${this.id}`, targetPlayer);
+        this.io.sockets.in(this.id).emit(`heal ${this.id}`, {updatedPlayer, nextPlayer});
     });
 };
 
@@ -59,11 +63,17 @@ game.prototype.attack = function (socket) {
 
         // End game if zero or below
         if (this.boss.hp <= 0) {
-            this.io.sockets.in(this.id).emit(`end ${this.id}`, 'win');
+            this.io.sockets.in(this.id).emit(`win ${this.id}`);
+            return;
         }
 
+        // Find out who's the next player, or false which equals loss of game
+        const otherPlayer = this.players.filter(player => player.id !== socket.id)[0];
+        const currPlayer  = this.players.find(player => player.id === socket.id);
+        const nextPlayer  = otherPlayer.hp > 0 ? otherPlayer.name : (currPlayer.hp > 0 ? currPlayer.name : false);
+
         // Emits boss hp and dmg took, to the client
-        this.io.sockets.in(this.id).emit(`attack ${this.id}`, this.boss);
+        this.io.sockets.in(this.id).emit(`attack ${this.id}`, {boss: this.boss, nextPlayer});
     });
 };
 
@@ -76,19 +86,17 @@ game.prototype.bossAttack = function (socket) {
     socket.on(`boss attack ${this.id}`, () => {
         // Build dmg, find target.
         const dmg          = randomInt(-20, -50);
-        const target       = this.players[randomInt(0, 1)].name;
+        const target       = this.players[randomInt(0, 2)].name;
         const targetPlayer = this.players.find(player => player.name === target);
 
         // Update player array, so health is correct
         this.players = changePlayerHealth(this.players, target, dmg);
 
-        // Find out who's the next player, or false which equals loss of game
-        const otherPlayer = this.players.filter(player => player.id !== socket.id)[0];
-        const currPlayer  = this.players.find(player => player.id === socket.id);
-        const nextPlayer  = otherPlayer.hp > 0 ? otherPlayer.name : (currPlayer.hp > 0 ? currPlayer.name : false);
+        const updatedPlayer = this.players.find(player => player.name === target);
+
 
         // Emit which target, dmg and who's next turn it is.
-        this.io.sockets.in(this.id).emit(`boss attack ${this.id}`, {target, dmg, nextPlayer});
+        this.io.sockets.in(this.id).emit(`boss attack ${this.id}`, updatedPlayer);
     });
 };
 
@@ -130,6 +138,7 @@ game.prototype.setup = function (socket, userObj) {
             boss: this.boss
         };
         this.io.sockets.in(this.id).emit(`start ${this.id}`, obj);
+        console.log('game started', this.players)
     }
 };
 

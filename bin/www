@@ -8,13 +8,18 @@ var app   = require('../app');
 var debug = require('debug')('redovisa:server');
 var http  = require('http');
 const socketMansion    = require('socket-mansion');
-const game             = require('../src/game').game
+const game             = require('../src/game').game;
+const chat             = require('../src/chat').chat
 
 const modules = [
     {
         module: game,
         name: "game"
     },
+    {
+        module: chat,
+        name: 'chat'
+    }
 ]
 
 

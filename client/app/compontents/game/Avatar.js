@@ -11,7 +11,8 @@ class Avatar extends React.Component {
         super(props);
         this.state = {
             playerObject: this.props.playerObject,
-            effect: ''
+            effect: '',
+            image: this.props.image
         };
     }
 
@@ -19,7 +20,7 @@ componentWillReceiveProps(nextProps) {
         const {playerObject} = this.state;
         // Compare current health with new to decide the css-animation
         this.setState({
-            playerObject: nextProps.playerObject
+            playerObject: nextProps.playerObject,
             effect: playerObject.hp < nextProps.playerObject.hp ? 'heal' : 'dmg'
         })
 
@@ -27,8 +28,9 @@ componentWillReceiveProps(nextProps) {
 
     render() {
         return (
-            <div className=`health-bar ${this.state.effect}`>
-                <h1>Health bar for {this.state.playerObject.name}: </h1>
+            <div className={'health-bar ' + this.state.effect}>
+                <img src={this.state.image}/>
+                <p>{this.state.playerObject.name}: </p>
                 <p>{this.state.playerObject.hp}</p>
             </div>
         );

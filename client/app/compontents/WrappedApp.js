@@ -21,6 +21,7 @@ const Header = (props) => (
             {text: "Hem", to: "/"},
             {text: "Login", to: "/login"},
             {text: "Create", to: "/create"},
+            {text: "Socket", to: "/socket"},
 
         ]}/>
     </div>
