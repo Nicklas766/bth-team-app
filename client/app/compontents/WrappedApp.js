@@ -9,16 +9,18 @@ const Navbar = (props) => {
         </NavLink>
     )
     return (
-        <div style={{ width: "70%" }}>
+        <nav>
             {navbar}
-        </div>
+        </nav>
     )
 }
 
 const Header = (props) => (
     <div className='header'>
+        <NavLink exact activeClassName='active' to=''>
+            <h1> <img src='images/swords.png'/> Games </h1>
+        </NavLink>
         <Navbar menu={[
-            {text: "Hem", to: "/"},
             {text: "Login", to: "/login"},
             {text: "Create", to: "/create"},
             {text: "Socket", to: "/socket"},

@@ -20,17 +20,40 @@ p {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    background: white;
+    background: #1E2326;
     box-shadow: 1px 1px 3px 1px black;
 }
 
 /* HEADER */
 .header {
-    background: #24292E;
+    display: flex;
+    background: #1E2326;
     width: 100%;
     color: #EDEDEE;
+    height: 100px;
+    border-bottom: solid 5px #2D2E32;
+    text-align: left;
+    color: #1EAADD;
 }
 
+.header nav {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.header nav a {
+    margin: 0 5%;
+    color: white;
+    text-decoration: none;
+}
+
+
+ h1 {
+     color: white;
+ }
 /* CONTENT */
 
 .content-container {
@@ -58,9 +81,28 @@ footer {
 .player-container {
     display: flex;
     flex-wrap: wrap;
-    height: 250px;
+    height: 270px;
     width: 90%;
     margin: 5% auto;
+}
+
+/* Action bar */
+
+.chat {
+    height: 75%;
+    background: #0B2E3B;
+    box-shadow: inset 1px 1px 4px 1px white;
+    width: 100%;
+    text-align: left;
+    border-radius: .3em;
+}
+
+.chat button {
+    border-radius: 2em;
+}
+
+.chat-messages {
+    padding: 10px;
 }
 
 /* Action bar */
@@ -69,13 +111,16 @@ footer {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
-    background: black;
+    color: white;
 }
 
 .spell-bar {
     display: flex;
-    background: grey;
+    background: #1E2326;
     justify-content: center;
+    width: 100%;
+    border-radius: .3em;
+    box-shadow: inset 1px 1px 10px 1px;
 }
 
 .spell {
@@ -83,10 +128,23 @@ footer {
     width: 64px;
     height: 64px;
     margin: 0 2%;
-    background: green;
-    background-size: 100% 100%;
-    border-radius: 5px;
+    background: #1EAADD;
+        background-image: none;
+        background-repeat: repeat;
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-size: auto auto;
+    background-size: 70% 70%;
+    border-radius: 1000px;
+    box-shadow: inset 1px 1px 4px 1px black;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
+.spell:hover {
+    border: none;
+    cursor: pointer;
+    box-shadow: inset 1px 1px 10px 1px orange
 }
 
 
@@ -95,20 +153,28 @@ footer {
 .health-bar {
     display: flex;
     flex-wrap: wrap;
-    height:100%;
-    width: 25%;
+    height: 100%;
+    width: 22.5%;
 
 }
 .health-bar p {
-    background: red;
-    width:100%;
+    background: #C12127;
+    width: 100%;
     margin: 0;
-    height: 12.5%;
+    height: 11.5%;
+    box-shadow: inset 1px 1px 10px 1px black;
+    border: solid 1px black;
 }
+
+.health-bar p:first-of-type {
+    background: #29AEDF;
+}
+
 
 .health-bar img {
     height: 75%;
-    width: 100%;
+    width: 99%;
+    border: solid 1px black;
 }
 
 .heal {

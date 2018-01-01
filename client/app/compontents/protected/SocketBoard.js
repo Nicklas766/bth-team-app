@@ -1,13 +1,13 @@
 var React = require('react');
 import io from 'socket.io-client';
 
-import GameBoard from './game/GameBoard.js';
-import Chat from './Chat.js';
+import GameBoard from '../game/GameBoard.js';
+import Chat from '../Chat.js';
 
 const Games = (props) => {
     // Get available games
-    const games = props.rooms.filter(room => room.users.length !== 2);
-    const joinGameRoom = games.map(room =>
+    console.log(props.rooms)
+    return props.rooms.map(room =>
         <div key={room.id} style={{background: 'orange', margin: 5}}>
             <p> You can join room {room.id} </p>
             <p> There are {room.users.length} users in the room </p>
@@ -40,7 +40,8 @@ class SocketBoard extends React.Component {
    const {socket, user} = this.state;
 
     socket.on('get rooms', (rooms) => {
-        this.setState({rooms: rooms});
+        const gameRooms = rooms.filter(room => room.users.length !== 2 && !room.id.includes('chat'));
+        this.setState({rooms: gameRooms});
     });
 
     socket.emit('setup user', user);
@@ -59,7 +60,7 @@ class SocketBoard extends React.Component {
   createRoom() {
     // The room id will simply be the length of all rooms
     const roomId = this.state.rooms.length;
-    this.state.socket.emit('create room', roomId, 'game');
+    this.state.socket.emit('create room', roomId.toString(), 'game');
     this.state.socket.emit('create room', 'chat' + roomId, 'chat');
     this.state.socket.emit('get rooms');
   }
@@ -72,17 +73,22 @@ class SocketBoard extends React.Component {
   }
 
   render() {
+      if (this.state.inRoom) {
+          return (
+              <div className='content-container'>
+                  <GameBoard socket={this.state.socket} id={this.state.room} name={this.state.user.name}>
+                    <Chat socket={this.state.socket} id={'chat' + this.state.room} />
+                </GameBoard>
+             </div>
+        );
+      }
+
     return (
         <div className='content-container'>
-
-            {this.state.inRoom && <GameBoard socket={this.state.socket} id={this.state.room} name={this.state.user.name}>
-            <Chat socket={this.state.socket} id={'chat' + this.state.room} />
-            </GameBoard>}
-
-
             <h1>Welcome to the overview of all our stuff</h1>
             <p> Here you can start chatting, create game or join a game </p>
 
+            <p> Available games </p>
             <Games rooms={this.state.rooms} />
 
              <select value={this.state.room} onChange={this.handleChange}>

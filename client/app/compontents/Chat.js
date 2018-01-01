@@ -41,8 +41,10 @@ class Chat extends React.Component {
         const msgs = messages.map(msg => <div>{msg.name}: {msg.text}</div>);
 
         return (
-            <div>
-                {msgs}
+            <div className='chat'>
+                <div className='chat-messages'>
+                    {msgs}
+                </div>
                     <textarea
                         name={"text"}
                         value={text}

@@ -17,7 +17,7 @@ var Login = require('./login/Login');
 var Create = require('./login/Create');
 
 // Protected paths in express.js, all who require socket.io
-var Socket = require('./SocketBoard.js');
+var Socket = require('./protected/SocketBoard.js');
 
 
 class App extends React.Component {
