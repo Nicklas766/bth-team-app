@@ -2,6 +2,12 @@ var React = require('react');
 var NavLink = require('react-router-dom').NavLink;
 var Link = require('react-router-dom').Link;
 
+const AudioPlayer = function(props) {
+  return (
+    <audio src={soundFile} controls autoPlay/>
+  );
+}
+
 const Navbar = (props) => {
     const navbar = props.menu.map(choice =>
         <NavLink key={choice.to} exact activeClassName='active' to={choice.to}>
@@ -40,6 +46,7 @@ const Footer = (props) => (
 
 class WrappedApp extends React.Component {
     render() {
+
         return (
             <div className='wrap-all' style={{backgroundImage: "url(../images/knight-background.jpg)"}}>
                 <div className='container'>

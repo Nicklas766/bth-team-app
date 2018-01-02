@@ -17,6 +17,7 @@ a {
     letter-spacing: 1px;
     margin: auto;
 }
+
 p {
     font-family: 'Open Sans', sans-serif;
 }
@@ -26,15 +27,16 @@ h1 {
 }
 
 /* login */
+
 .login-container {
     display: flex;
     flex-wrap: wrap;
     opacity: 0.9;
 }
+
 input {
     width: 40%;
     margin: 5% 30%;
-    margin-bottom: 5%;
     background: #212528;
     border: none;
     padding: 10px;
@@ -51,14 +53,14 @@ input {
     margin: 0 30%;
     padding: 10px;
     border: none;
-    background: #1EAADD;
+    background: #1eaadd;
     color: white;
     box-shadow: inset 1px 1px 5px 1px;
     font-family: 'Open Sans', sans-serif;
 }
 
 .login-info {
-    background: #1EAADD;
+    background: #1eaadd;
     padding: 10px;
     width: 50%;
     margin: 2% auto;
@@ -68,18 +70,18 @@ input {
 
 .login-container a {
     margin-top: 24px;
-    color: #1EAADD;
+    color: #1eaadd;
 }
-
 
 .content-header {
     height: 30px;
-    background: #3A3B3D;
+    background: #3a3b3d;
     text-align: left;
     line-height: 30px;
     margin: 0;
-    color: #1EAADD;
+    color: #1eaadd;
 }
+
 .content-header h3 {
     margin: 0% 5%;
     text-transform: uppercase;
@@ -91,9 +93,10 @@ input {
     background: black;
     background-size: 100%;
     /* background-position: right -50px top 100px; */
-            background-attachment: fixed;
-            background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
+
 .container {
     width: 960px;
     margin: auto;
@@ -103,15 +106,16 @@ input {
 }
 
 /* HEADER */
+
 .header {
     display: flex;
-    background: #1E2326;
+    background: #1e2326;
     width: 100%;
-    color: #EDEDEE;
+    color: #ededee;
     height: 60px;
-    border-bottom: solid 5px #2D2E32;
+    border-bottom: solid 5px #2d2e32;
     text-align: left;
-    color: #1EAADD;
+    color: #1eaadd;
 }
 
 .header nav {
@@ -128,10 +132,10 @@ input {
     text-decoration: none;
 }
 
+h1 {
+    color: white;
+}
 
- h1 {
-     color: white;
- }
 /* CONTENT */
 
 .content-container {
@@ -143,12 +147,13 @@ input {
 /* FOOTER */
 
 footer {
-    background: #24292E;
+    background: #24292e;
     width: 100%;
-    color: #EDEDEE;
+    color: #ededee;
 }
 
 /*****************************************************************************/
+
 /* PROFILE */
 
 .profile-nav {
@@ -167,9 +172,8 @@ footer {
 .profile-nav a {
     width: 37.5%;
     height: 100%;
-    background: #1EAADD;
+    background: #1eaadd;
     box-shadow: inset 1px 1px 3px 1px black;
-
 }
 
 .profile-nav a:hover {
@@ -183,6 +187,7 @@ footer {
 }
 
 /* Community */
+
 .room-container {
     width: 70%;
     display: flex;
@@ -191,26 +196,30 @@ footer {
     border: solid 1px;
     box-shadow: 1px 1px 4px 1px black;
 }
+
 .room-scroll {
     max-height: 500px;
     overflow-y: scroll;
     width: 100%;
     padding: 10px;
 }
+
 .room-header {
     width: 100%;
     text-align: center;
-    background: #1E2326;
+    background: #1e2326;
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 1px;
     margin: auto;
 }
+
 .room-header button {
     padding: 10px;
     width: 33%;
 }
+
 .room-header select {
     padding: 10px;
     width: 33%;
@@ -221,15 +230,17 @@ footer {
     margin: 2% auto;
     width: 90%;
     text-align: left;
-    border: solid 1px #1EAADD;
+    border: solid 1px #1eaadd;
     padding: 5px;
     border-radius: 0.1em;
 }
 
 /*****************************************************************************/
+
 /* GAME */
 
 /* Containers */
+
 .boss-container {
     display: flex;
     flex-wrap: wrap;
@@ -247,8 +258,8 @@ footer {
     margin: 5% auto;
 }
 
-
 /* Chat */
+
 .chat {
     height: 75%;
     background: #0B2E3B;
@@ -266,7 +277,6 @@ footer {
     padding: 10px;
 }
 
-
 /* Action bar and spell bar*/
 
 .action-bar {
@@ -278,7 +288,7 @@ footer {
 
 .spell-bar {
     display: flex;
-    background: #1E2326;
+    background: #1e2326;
     justify-content: center;
     width: 100%;
     border-radius: .3em;
@@ -290,12 +300,12 @@ footer {
     width: 64px;
     height: 64px;
     margin: 0 2%;
-    background: #1EAADD;
-        background-image: none;
-        background-repeat: repeat;
-        background-position-x: 0%;
-        background-position-y: 0%;
-        background-size: auto auto;
+    background: #1eaadd;
+    background-image: none;
+    background-repeat: repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto auto;
     background-size: 70% 70%;
     border-radius: 1000px;
     box-shadow: inset 1px 1px 4px 1px black;
@@ -316,8 +326,8 @@ footer {
     flex-wrap: wrap;
     height: 100%;
     width: 22.5%;
-
 }
+
 .health-bar p {
     background: #C12127;
     width: 100%;
@@ -330,7 +340,6 @@ footer {
 .health-bar p:first-of-type {
     background: #29AEDF;
 }
-
 
 .health-bar img {
     height: 75%;
@@ -347,14 +356,31 @@ footer {
     animation-name: dmg;
     animation-duration: 3s;
 }
+
 @keyframes heal {
-    0%   {box-shadow: none;}
-   50%  {box-shadow: 1px 1px 100px 1px yellow;}
-   100% {box-shadow: none;}
+    0% {
+        box-shadow: none;
+    }
+
+    50% {
+        box-shadow: 1px 1px 100px 1px yellow;
+    }
+
+    100% {
+        box-shadow: none;
+    }
 }
 
 @keyframes dmg {
-    0%   {box-shadow: none;}
-   50%  {box-shadow: 1px 1px 100px 1px red;}
-   100% {box-shadow: none;}
+    0% {
+        box-shadow: none;
+    }
+
+    50% {
+        box-shadow: 1px 1px 100px 1px red;
+    }
+
+    100% {
+        box-shadow: none;
+    }
 }

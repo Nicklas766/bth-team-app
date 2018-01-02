@@ -14,7 +14,6 @@ var http   = require('http');
 var server = http.createServer(app);
 
 // socket.io and socket-container module
-var io        = require('socket.io-client');
 const game    = require('../../src/game.js').game;
 const socketMansion = require('socket-mansion');
 const setupRoomTest = require('socket-mansion').setupRoomTest;
@@ -42,13 +41,12 @@ describe("Create two different games and win one while losing the other", () => 
         done();
     });
 
-    it('should win the game since boss has 500 hp', (done) => {
+    it('Should close the connections on win event since we won', (done) => {
         const testFunc = (client1, client2) => (done) => {
             client2.on('start room1', () => {
                 client1.emit('attack room1', 500);
 
-                client1.on('end room1', (outcome) => {
-                    assert.equal(outcome, 'win');
+                client1.on('win room1', () => {
                     client1.disconnect();
                     client2.disconnect();
                     done();
@@ -91,7 +89,4 @@ describe("Create two different games and win one while losing the other", () => 
             module: 'game'
         });
     });
-
-
-
 });

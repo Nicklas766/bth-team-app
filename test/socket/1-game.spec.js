@@ -72,9 +72,9 @@ describe("Try out basic game actions with the socket-mansion", () => {
                 client1.emit('heal room2', 'player2');
 
                 client2.on('heal room2', (obj) => {
-                    console.log(obj)
-                    assert.equal(obj.name, 'player2');
-                    assert.equal(obj.hp, 280);
+                    console.log(obj);
+                    assert.equal(obj.updatedPlayer.name, 'player2');
+                    assert.equal(obj.updatedPlayer.hp, 280);
                     client1.disconnect();
                     client2.disconnect();
                     done();
@@ -92,7 +92,7 @@ describe("Try out basic game actions with the socket-mansion", () => {
         });
     });
 
-    it('should attack the boss with 50 dmg and return 450 hp', (done) => {
+    it('should attack the boss with 50 dmg and return boss obj with 450 hp', (done) => {
         const testFunc = (client1, client2) => (done) => {
             client2.on('start room3', (obj) => {
                 assert.equal(obj.players[0].name, 'player1');
@@ -101,9 +101,11 @@ describe("Try out basic game actions with the socket-mansion", () => {
 
                 client1.emit('attack room3');
 
-                client2.on('attack room3', (boss) => {
-                    assert.equal(boss.hp, 450);
-                    assert.equal(boss.name, 'Orc');
+                client2.on('attack room3', (obj) => {
+                    assert.equal(obj.boss.hp, 450);
+                    assert.equal(obj.boss.name, 'Orc');
+                    console.log(obj);
+                    assert.equal(obj.nextPlayer, 'player2');
                     client1.disconnect();
                     client2.disconnect();
                     done();

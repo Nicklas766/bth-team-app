@@ -14,7 +14,6 @@ var http   = require('http');
 var server = http.createServer(app);
 
 // socket.io and socket-container module
-var io        = require('socket.io-client');
 const game    = require('../../src/game.js').game;
 const socketMansion = require('socket-mansion');
 const setupRoomTest = require('socket-mansion').setupRoomTest;
@@ -50,9 +49,13 @@ describe("Try out the boss of the game with the socket-mansion", () => {
                 client1.emit('boss attack room1');
 
                 client2.on('boss attack room1', (obj) => {
-                    assert.equal(true, ['player1', 'player2'].includes(obj.target));
-                    assert.equal(true, (obj.dmg < -20 && obj.dmg > -50));
-                    assert.equal('player2', obj.nextPlayer);
+                    assert.equal(true, ['player1', 'player2'].includes(obj.nextPlayer));
+
+                    // We can find out damage with subtract and the original hp
+                    const dmg = obj.updatedPlayer.hp - 250;
+
+                    assert.equal(true, (dmg < -20 && dmg > -50));
+
                     client1.disconnect();
                     client2.disconnect();
                     done();
