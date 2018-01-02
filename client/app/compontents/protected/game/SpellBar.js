@@ -66,9 +66,9 @@ class Spellbar extends React.Component {
         return (<div style={{width: '100%', display: 'flex'}}>
             {
                 this.state.yourTurn && <div className='spell-bar'>
-                    <button onClick={this.attack} style={{backgroundImage: `url(images/sword.png)`}} className='spell' />
-                    <button value={name} onClick={this.heal} style={{backgroundImage: `url(images/add.png)`}} className='spell' />
-                    <button value={friend} onClick={this.heal} style={{backgroundImage: `url(images/charity.png)`}} className='spell' />
+                    <button onClick={this.attack} style={{backgroundImage: `url(../images/sword.png)`}} className='spell' />
+                    <button value={name} onClick={this.heal} style={{backgroundImage: `url(../images/add.png)`}} className='spell' />
+                    <button value={friend} onClick={this.heal} style={{backgroundImage: `url(../images/charity.png)`}} className='spell' />
             </div>}
         </div>);
     }

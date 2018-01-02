@@ -18,12 +18,13 @@ const Navbar = (props) => {
 const Header = (props) => (
     <div className='header'>
         <NavLink exact activeClassName='active' to=''>
-            <h1> <img src='images/swords.png'/> Games </h1>
+            <h1> Games </h1>
         </NavLink>
         <Navbar menu={[
             {text: "Login", to: "/login"},
             {text: "Create", to: "/create"},
             {text: "Socket", to: "/socket"},
+            {text: "Profile", to: "/protected/profile"},
 
         ]}/>
     </div>
@@ -40,10 +41,12 @@ const Footer = (props) => (
 class WrappedApp extends React.Component {
     render() {
         return (
-            <div className='container'>
-                <Header />
-                {this.props.children}
-                <Footer />
+            <div className='wrap-all' style={{backgroundImage: "url(../images/knight-background.jpg)"}}>
+                <div className='container'>
+                    <Header />
+                    {this.props.children}
+                    <Footer />
+                </div>
             </div>
         );
     }

@@ -8,6 +8,11 @@ function handleError(error) {
 }
 
 module.exports = {
+    fetchProfile: async function () {
+        const data = await axios.get("/session/profile");
+        return data.data;
+    },
+
     fetchUsers: async function () {
         const data = await axios.get("/api/users");
         return data.data;

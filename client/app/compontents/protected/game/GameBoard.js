@@ -106,13 +106,13 @@ class GameBoard extends React.Component {
 
 
                 <div className='boss-container'>
-                    <Avatar image='images/boss.jpg' playerObject={this.state.boss}/>
+                    <Avatar image='../images/boss.jpg' playerObject={this.state.boss}/>
                 </div>
 
 
                 <div className='player-container'>
 
-                    <Avatar image='images/knight.jpg' playerObject={this.state.thisClient}/>
+                    <Avatar image='../images/knight.jpg' playerObject={this.state.thisClient}/>
 
                     <div className='action-bar'>
                         {this.props.children}
@@ -123,7 +123,7 @@ class GameBoard extends React.Component {
                             name={this.state.thisClient.name}
                             friend={this.state.otherClient.name}/>
                     </div>
-                    <Avatar image='images/friend.jpg' playerObject={this.state.otherClient}/>
+                    <Avatar image='../images/friend.jpg' playerObject={this.state.otherClient}/>
                 </div>
             </div>
                 : <div><p>Waiting for player 2</p></div>}

@@ -9,22 +9,27 @@ class Create extends React.Component {
         this.state = {
           name: '',
           pass: '',
-          success: false,
-          fail: false
+          repeat: '',
+          showMessage: false,
+          message: ''
       };
       this.handleInputChange = this.handleInputChange.bind(this);
       this.createAccount     = this.createAccount.bind(this);
     }
 
     async createAccount() {
+        if (this.state.pass !== this.state.repeat) {
+            this.setState({ showMessage: true, message: 'Fail! Passwords are not matching' });
+            return false;
+        }
         const statusCode = await api.createAccount({
             name: this.state.name,
             pass: this.state.pass,
         });
 
         // based on status code update visual message
-        statusCode == 200 && this.setState({ success: true, fail: false });
-        statusCode == 401 && this.setState({ success: false, fail: true });
+        statusCode == 200 && this.setState({ showMessage: true, message: 'Success! You created an account.' });
+        statusCode == 401 && this.setState({ showMessage: true, message: 'Fail! Either the user exists or you didnt type anything' });
         console.log(statusCode)
     }
 
@@ -34,18 +39,25 @@ class Create extends React.Component {
 
 
     render() {
-        const {name, pass, success, fail} = this.state;
+        const {name, pass, repeat, showMessage} = this.state;
         return (
             <div className='content-container'>
-                <h1>Join our community!</h1>
+            <div className='content-header'>
+                <h3> Create account </h3>
+            </div>
 
-                {success && <p> Success! You've created an account! </p>}
-                {fail && <p> Fail! Either the user exists or you didn't type anything </p>}
-                <input name={"name"} value={name} onChange={this.handleInputChange} placeholder={"Username"}/>
-                <input name={"pass"} value={pass} onChange={this.handleInputChange} placeholder={"Password"}/>
-                <button onClick={this.createAccount}>Create</button>
 
-                <Link to='/login'>Login</Link>
+                {showMessage && <p className='login-info'> {this.state.message} </p>}
+
+                <h3>Join our community!</h3>
+                <div className='login-container'>
+                    <input name={"name"} value={name} onChange={this.handleInputChange} placeholder={"Username"}/>
+                    <input name={"pass"} value={pass} onChange={this.handleInputChange} placeholder={"Password"}/>
+                    <input name={"repeat"} value={repeat} onChange={this.handleInputChange} placeholder={"Repeat password"}/>
+                    <button onClick={this.createAccount}>Create</button>
+
+                    <Link to='/login'>Login</Link>
+                </div>
             </div>
         );
     }

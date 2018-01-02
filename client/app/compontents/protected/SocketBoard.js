@@ -1,16 +1,17 @@
 var React = require('react');
 import io from 'socket.io-client';
 
-import GameBoard from '../game/GameBoard.js';
+import GameBoard from './game/GameBoard.js';
 import Chat from '../Chat.js';
 
 const Games = (props) => {
     // Get available games
     console.log(props.rooms)
-    return props.rooms.map(room =>
-        <div key={room.id} style={{background: 'orange', margin: 5}}>
-            <p> You can join room {room.id} </p>
-            <p> There are {room.users.length} users in the room </p>
+    return props.rooms.reverse().map(room =>
+        <div key={room.id} className='room'>
+            <h3> Game {room.id} </h3>
+            <h3> Game {console.log(room.users)} </h3>
+            <p> {room.users[0] ? room.users[0].user.name : 'no one'} is waiting in this room  </p>
         </div>
     )
 
@@ -27,9 +28,10 @@ class SocketBoard extends React.Component {
        super(props);
        this.state = {
          socket: io(),
-         user: {name: Math.random().toString(36).substring(7)},// The user from DB, atm random string
+         user: this.props.user, // The user from DB, atm random string
          rooms: [],
-         inRoom: false
+         inRoom: false,
+         room: false
      };
       this.joinRoom = this.joinRoom.bind(this);
       this.createRoom = this.createRoom.bind(this);
@@ -45,7 +47,8 @@ class SocketBoard extends React.Component {
     });
 
     socket.emit('setup user', user);
-    this.state.socket.emit('get rooms');
+      this.state.socket.emit('get rooms');
+
 }
 
   componentWillUnmount() {
@@ -84,19 +87,24 @@ class SocketBoard extends React.Component {
       }
 
     return (
-        <div className='content-container'>
-            <h1>Welcome to the overview of all our stuff</h1>
-            <p> Here you can start chatting, create game or join a game </p>
+        <div style={{minHeight: "250px", width: "100%", background: '#1E2326'}}>
+            <div className='content-header'>
+                <h3> Community </h3>
+            </div>
 
-            <p> Available games </p>
-            <Games rooms={this.state.rooms} />
-
-             <select value={this.state.room} onChange={this.handleChange}>
-                <Options rooms={this.state.rooms} />
-            </select>
-
-             <button onClick={this.createRoom}>Create new game</button>
-             <button onClick={this.joinRoom}>Join a room</button>
+            <div className='room-container'>
+                <div className='room-header'>
+                    <p> Available games </p>
+                    <button onClick={this.createRoom}>Create new game</button>
+                    <button onClick={this.joinRoom}>Join Game</button>
+                    <select value={this.state.room} onChange={this.handleChange}>
+                       <Options rooms={this.state.rooms} />
+                   </select>
+               </div>
+               <div className='room-scroll'>
+                <Games rooms={this.state.rooms} />
+                </div>
+         </div>
 
         </div>
     );

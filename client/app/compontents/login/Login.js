@@ -38,17 +38,23 @@ class Login extends React.Component {
     render() {
         return (
             <div className='content-container'>
-                <h1>Welcome! Login and join the fun.</h1>
 
-                {this.state.success && <p> You've logged in! </p>}
-                {this.state.invalid && <p> Wrong password! </p>}
-                {this.state.error && <p> This user doesn't exist, or something went wrong </p>}
+            <div className='content-header'>
+                <h3> Login </h3>
+            </div>
 
-                <input name={"name"} value={this.state.name} onChange={this.handleInputChange} placeholder={"Username"}/>
-                <input name={"pass"} value={this.state.pass} onChange={this.handleInputChange} placeholder={"Password"}/>
-                <button onClick={this.login}>Login</button>
+                {this.state.success && <p className='login-info'> You've logged in! </p>}
+                {this.state.invalid && <p className='login-info'> Wrong password! </p>}
+                {this.state.error && <p className='login-info'> This user doesn't exist, or something went wrong </p>}
 
-                <Link to='/create'>Create a user</Link>
+                <h3>Great to meet you! Please login.</h3>
+                <div className='login-container'>
+                    <input name={"name"} value={this.state.name} onChange={this.handleInputChange} placeholder={"Username"}/>
+                    <input name={"pass"} value={this.state.pass} onChange={this.handleInputChange} placeholder={"Password"}/>
+                    <button onClick={this.login}>Login</button>
+
+                    <Link to='/create'>Create a user</Link>
+                </div>
             </div>
         );
     }
