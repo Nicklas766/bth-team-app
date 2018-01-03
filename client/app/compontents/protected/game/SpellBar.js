@@ -1,14 +1,11 @@
-var React = require('react');
-import io from 'socket.io-client';
-
-
-
+import React from 'react';
+import PropTypes from 'prop-types';
 /**
 * Spellbar makes sure the events for the spells are correct
 * it also receives props from GameBoard, so we know who's
 * turn it is
 */
-class Spellbar extends React.Component {
+class SpellBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,36 +14,37 @@ class Spellbar extends React.Component {
             name: this.props.name,
             friend: this.props.friend,
             playerTurn: this.props.playerTurn,
-            yourTurn: false
+            yourTurn: false,
+            started: false
         };
         this.heal = this.heal.bind(this);
         this.attack = this.attack.bind(this);
     }
 
     componentDidMount() {
-        const {playerTurn, name} = this.state;
-
-        if (playerTurn === name) {
-            this.setState({yourTurn: true});
-        }
+        setTimeout(() => {
+            this.setState({
+                started: true
+            });
+        }, 6000);
     }
 
+    // We have to wait 6000 before next turn due to effects
     componentWillReceiveProps(nextProps) {
         if (nextProps.playerTurn === this.state.name) {
-            console.log('Its a new turn for', nextProps.playerTurn)
-            this.setState({
-                yourTurn: true,
-                playerTurn: nextProps.playerTurn
-            });
+            setTimeout(() => {
+                this.setState({
+                    yourTurn: true,
+                    playerTurn: nextProps.playerTurn
+                });
+            }, 6000);
         }
     }
 
     // Start boss attack after 3 sec
     nextTurn() {
         this.setState({yourTurn: false});
-        setTimeout(() => {
-          this.state.socket.emit(`boss attack ${this.state.id}`);
-        }, 3000);
+        this.state.socket.emit(`boss attack ${this.state.id}`);
     }
 
     attack() {
@@ -54,24 +52,47 @@ class Spellbar extends React.Component {
         this.nextTurn();
     }
     heal(event) {
-        console.log(event.target.value)
+        console.log('I will heal', event.target.value)
+        console.log(event.target.value);
         this.state.socket.emit(`heal ${this.state.id}`, event.target.value);
         this.nextTurn();
     }
 
 
     render() {
-        const {friend, name, playerTurn} = this.state;
+        if (!this.state.started) {
+            return (<div className='spell-bar'>
+                <p> Game starts in 5 sec </p>
+            </div>)
+        }
+        if (!this.state.yourTurn) {
+            return (<div className='spell-bar'>
+                <p> {this.state.friend} turn </p>
+            </div>)
+        }
 
-        return (<div style={{width: '100%', display: 'flex'}}>
-            {
-                this.state.yourTurn && <div className='spell-bar'>
-                    <button onClick={this.attack} style={{backgroundImage: `url(../images/sword.png)`}} className='spell' />
-                    <button value={name} onClick={this.heal} style={{backgroundImage: `url(../images/add.png)`}} className='spell' />
-                    <button value={friend} onClick={this.heal} style={{backgroundImage: `url(../images/charity.png)`}} className='spell' />
-            </div>}
+
+        const {friend, name} = this.state;
+        const spellStyle1 = {backgroundImage: `url(../images/sword.png)`};
+        const spellStyle2 = {backgroundImage: `url(../images/add.png)`};
+        const spellStyle3 = {backgroundImage: `url(../images/charity.png)`};
+
+
+        return (<div className='spell-bar'>
+                <button onClick={this.attack} style={spellStyle1} className='spell' />
+                <button onClick={this.heal} value={name} style={spellStyle2} className='spell' />
+                <button onClick={this.heal} value={friend} style={spellStyle3} className='spell' />
         </div>);
     }
 }
 
-module.exports = Spellbar;
+SpellBar.propTypes = {
+    socket: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    friend: PropTypes.string.isRequired,
+    playerTurn: PropTypes.string.isRequired,
+};
+
+
+module.exports = SpellBar;

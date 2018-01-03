@@ -1,5 +1,7 @@
 node_modules
 misc
-client
+client/node_modules
+client/app/compontents/Credit.js
+backend/public
 coverage
 test/react/testSetup.js

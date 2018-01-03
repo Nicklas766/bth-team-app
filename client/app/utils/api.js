@@ -2,48 +2,53 @@ var axios = require('axios');
 
 
 
-function handleError(error) {
-    console.warn(error);
-    return null;
-}
-
 module.exports = {
     fetchProfile: async function () {
-        const data = await axios.get("/session/profile");
-        return data.data;
+        const data = await axios.get("/protected/profiledata");
+
+        return {data: data.data, status: data.status};
     },
 
     fetchUsers: async function () {
         const data = await axios.get("/api/users");
+
         return data.data;
     },
 
     // Login, then return 200 or 401 or 404
     login: async function (params) {
         try {
-            const response = await axios.post("/session/login", params);
+            const response = await axios.post("/account/login", params);
+
             return response.status;
-        } catch(err) {
+        } catch (err) {
+            return err.response.status;
+        }
+    },
+    // Logouts and returns 200
+    logout: async function () {
+        try {
+            const response = await axios.post("/account/logout");
+
+            return response.status;
+        } catch (err) {
             return err.response.status;
         }
     },
     // Creates account, then return 200 or 401 code
     createAccount: async function (params) {
         try {
-            const response = await axios.post("/api/insert", params);
+            const response = await axios.post("/account/insert", params);
+
             return response.status;
-        } catch(err) {
+        } catch (err) {
             return err.response.status;
         }
-
     },
 
     resetPeople: async function () {
-        const data = await axios.get("/mongodb/reset")
+        const data = await axios.get("/api/reset");
+
         return data.data;
     }
 };
-
-
-// fetchPopularRepos('Java')
-//     .then()

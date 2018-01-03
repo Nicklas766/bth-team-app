@@ -27,6 +27,7 @@ class App extends React.Component {
             <Router>
                 <WrappedApp>
                     <Switch>
+
                         <Route exact path='/' component={Home} />
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/create' component={Create} />

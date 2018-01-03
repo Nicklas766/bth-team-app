@@ -349,12 +349,12 @@ footer {
 
 .heal {
     animation-name: heal;
-    animation-duration: 3s;
+    animation-duration: 2s;
 }
 
 .dmg {
     animation-name: dmg;
-    animation-duration: 3s;
+    animation-duration: 2s;
 }
 
 @keyframes heal {

@@ -1,6 +1,5 @@
-var React = require('react');
-var api = require('../../utils/api');
-var Link = require('react-router-dom').Link;
+import React from 'react';
+
 
 class Home extends React.Component {
     render() {
@@ -10,18 +9,18 @@ class Home extends React.Component {
 
                 <div className='boss-container'>
                     <div className='health-bar'>
-                         <img src="images/boss.jpg"/>
-                         <p> name </p>
-                         <p> 120 </p>
+                        <img src="images/boss.jpg"/>
+                        <p> name </p>
+                        <p> 120 </p>
                     </div>
                 </div>
 
 
                 <div className='player-container'>
                     <div className='health-bar'>
-                         <img src="images/knight.jpg "/>
-                         <p> name </p>
-                         <p> 120 </p>
+                        <img src="images/knight.jpg "/>
+                        <p> name </p>
+                        <p> 120 </p>
                     </div>
                     <div className='action-bar'>
 
@@ -32,9 +31,9 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div className='health-bar'>
-                         <img src="images/friend.jpg "/>
-                         <p> name </p>
-                         <p> 120 </p>
+                        <img src="images/friend.jpg "/>
+                        <p> name </p>
+                        <p> 120 </p>
                     </div>
                 </div>
             </div>
