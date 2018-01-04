@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 
 import GameBoard from './game/GameBoard.js';
 import Chat from '../Chat.js';
+import Sound from 'react-sound';
 
 const Games = (props) => {
     // Get available games
@@ -85,6 +86,10 @@ class SocketBoard extends React.Component {
         if (this.state.inRoom) {
             return (
                 <div className='content-container'>
+                <Sound
+                    url="../../music/bensound-instinct.mp3"
+                    playStatus={Sound.status.PLAYING}
+                    />
                     <GameBoard socket={socket} id={room} name={user.name}>
                         <Chat socket={socket} id={'chat' + room} />
                     </GameBoard>

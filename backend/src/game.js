@@ -124,7 +124,7 @@ game.prototype.cheat = function (socket) {
 
     // If user disconnects then let other player win
     socket.on(`disconnect`, () => {
-        this.io.sockets.in(this.id).emit(`win ${this.id}`);
+        this.io.sockets.in(this.id).emit(`player disconnected ${this.id}`);
     });
 
     socket.on(`cheat player1 ${this.id}`, () => {

@@ -4,17 +4,12 @@ import PropTypes from 'prop-types';
 import SpellBar from './SpellBar.js';
 import Avatar from './Avatar.js';
 import SpellSounds from './SpellSounds.js';
-import Sound from 'react-sound';
 
 import api from '../../../utils/api';
 
-// <Sound
-//     url="../../music/bensound-instinct.mp3"
-//     playStatus={Sound.status.PLAYING}
-//     />
-//     <h1>Game board</h1>
-//
-//     <SpellSounds socket={this.state.socket} id={this.state.id} />
+
+
+
 
 
 
@@ -44,7 +39,8 @@ class GameBoard extends React.Component {
             boss: {},
             playerTurn: "",
             started: false,
-            gameResult: ''
+            gameResult: '',
+            disconnected: false
         };
     }
 
@@ -92,8 +88,14 @@ class GameBoard extends React.Component {
             this.endGame('won', 1, 0);
         });
 
-        socket.on(`disconnect`, async () => {
-            socket.emit(`disconnected ${id}`);
+
+        // If player disconnects then leave and remove rooms
+        socket.on(`player disconnected ${id}`, async () => {
+            this.state.socket.emit('leave room', 'chat' + this.state.id);
+            this.state.socket.emit('leave room', this.state.id);
+            this.state.socket.emit('remove room', 'chat' + this.state.id);
+            this.state.socket.emit('remove room', this.state.id);
+            this.setState({disconnected: true});
         });
     }
 
@@ -107,7 +109,11 @@ class GameBoard extends React.Component {
     }
 
     render() {
-        const {boss, thisClient, socket, id, playerTurn, otherClient, gameResult} = this.state;
+        const {boss, thisClient, socket, id, playerTurn, otherClient, gameResult, disconnected} = this.state;
+
+        if (disconnected) {
+            return <p> The person playing with you disconnected! </p>;
+        }
 
         if (gameResult === 'won') {
             return <p> You won!!!! </p>;
@@ -124,6 +130,8 @@ class GameBoard extends React.Component {
                     <div className='boss-container'>
                         <Avatar image='../images/boss.jpg' playerObject={boss}/>
                     </div>
+
+                    <SpellSounds socket={this.state.socket} id={this.state.id} />
 
                     <div className='player-container'>
 
