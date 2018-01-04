@@ -72,8 +72,8 @@ class Profile extends React.Component {
                 {!this.state.games &&
             <div style={{minHeight: "250px", width: "100%", background: '#1E2326'}}>
                 {this.state.user.name}
-                <h3> Wins: {this.state.user.name}</h3>
-                <h3> losses: {this.state.user.name}</h3>
+                <h3> Wins: {this.state.user.wins}</h3>
+                <h3> losses: {this.state.user.losses}</h3>
             </div>}
 
 

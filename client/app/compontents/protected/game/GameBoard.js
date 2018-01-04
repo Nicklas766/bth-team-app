@@ -6,6 +6,8 @@ import Avatar from './Avatar.js';
 import SpellSounds from './SpellSounds.js';
 import Sound from 'react-sound';
 
+import api from '../../../utils/api';
+
 // <Sound
 //     url="../../music/bensound-instinct.mp3"
 //     playStatus={Sound.status.PLAYING}
@@ -13,6 +15,23 @@ import Sound from 'react-sound';
 //     <h1>Game board</h1>
 //
 //     <SpellSounds socket={this.state.socket} id={this.state.id} />
+
+
+
+// Checks if updated player is current client, based on that
+// We know which client we need to update
+const getClientKey = (currClient, updatedPlayer) => {
+    const thisClientUpdated = updatedPlayer.name === currClient.name;
+    return thisClientUpdated ? 'thisClient' : 'otherClient';
+}
+
+const getClients = (players, name) => {
+    const thisClient  = players.find(player => player.name === name);
+    const otherClient = players.filter(player => player.name !== name)[0];
+    return {thisClient, otherClient}
+}
+
+
 class GameBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +44,7 @@ class GameBoard extends React.Component {
             boss: {},
             playerTurn: "",
             started: false,
+            gameResult: ''
         };
     }
 
@@ -32,98 +52,75 @@ class GameBoard extends React.Component {
     componentDidMount() {
         const {socket, id, name} = this.state;
 
-        console.log(id);
-        console.log('i was mounted');
-        // On start change the playersTurn so we can start
+        // On.('start') setups our game and starts it
         socket.on(`start ${id}`, (obj) => {
-            const {players, playerTurn, boss} = obj;
-
-            console.log('start gameee');
-            // find our client and other client
-            const thisClient = players.find(player => player.name === name);
-            const otherClient = players.filter(player => player.name !== name)[0];
-
+            const {thisClient, otherClient} = getClients(obj.players, name);
             this.setState({
                 thisClient: thisClient,
                 otherClient: otherClient,
-                thisName: thisClient.name,
-                otherName: otherClient.name,
-                boss: boss,
-                playerTurn: playerTurn,
+                boss: obj.boss,
+                playerTurn: obj.playerTurn,
                 started: true
             });
         });
 
         // This is when boss has attacked
         socket.on(`boss attack ${id}`, (obj) => {
-            const {thisClient, otherClient} = this.state;
-            const {updatedPlayer, nextPlayer} = obj;
-
-            if (!nextPlayer) {
-                this.setState({won: true});
-                console.log('U LOOOST')
-                return true;
+            if (!obj.nextPlayer) {
+                return this.endGame('lost', 0, 1);
             }
-            console.log(obj);
-            // If this client was attacked then update
-            updatedPlayer.name === thisClient.name && this.updateClientWithState('thisClient', updatedPlayer);
-
-            // If other client was attacked then update
-            updatedPlayer.name === otherClient.name && this.updateClientWithState('otherClient', updatedPlayer);
+            const key = getClientKey(this.state.thisClient, obj.updatedPlayer);
+            this.setState({[key]: obj.updatedPlayer});
         });
 
         // We receive target and heal when someone has chosen heal
         socket.on(`heal ${id}`, (obj) => {
-            // This means no players left
-            !obj.nextPlayer && console.log('players lost!');
-            const {thisClient, otherClient} = this.state;
-
-            console.log(obj);
-            obj.updatedPlayer.name === thisClient.name && this.updateAfterHeal('thisClient', obj);
-            obj.updatedPlayer.name === otherClient.name && this.updateAfterHeal('otherClient', obj);
-        });
-
-        // Update boss
-        socket.on(`attack ${id}`, (obj) => {
-            // This means no players left
-            !obj.nextPlayer && console.log('players lost!');
+            const key = getClientKey(this.state.thisClient, obj.updatedPlayer);
             this.setState({
-                boss: obj.boss,
-                playerTurn: obj.nextPlayer,
+                [key]: obj.updatedPlayer,
+                playerTurn: obj.nextPlayer
             });
         });
 
+        // Updates the boss boss
+        socket.on(`attack ${id}`, (obj) => {
+            this.setState({boss: obj.boss, playerTurn: obj.nextPlayer});
+        });
+
         // On win
-        socket.on(`win ${id}`, () => {
-            this.setState({won: true});
+        socket.on(`win ${id}`, async () => {
+            this.endGame('won', 1, 0);
+        });
+
+        socket.on(`disconnect`, async () => {
+            socket.emit(`disconnected ${id}`);
         });
     }
 
-    // Computed property name
-    updateClientWithState(key, obj) {
-        this.setState({[key]: obj});
-    }
 
-    // Computed property name
-    updateAfterHeal(key, obj) {
-        this.setState({
-            [key]: obj.updatedPlayer,
-            playerTurn: obj.nextPlayer
-        });
+
+    async endGame(result, win, loss) {
+        this.state.socket.emit('remove room', 'chat' + this.state.id);
+        this.state.socket.emit('remove room', this.state.id);
+        this.setState({gameResult: result});
+        await api.save({win: win, loss: loss});
     }
 
     render() {
-        const {boss, thisClient, socket, id, playerTurn, otherClient, won} = this.state;
+        const {boss, thisClient, socket, id, playerTurn, otherClient, gameResult} = this.state;
 
-        if (won) {
+        if (gameResult === 'won') {
             return <p> You won!!!! </p>;
         }
+        if (gameResult === 'lost') {
+            return <p> You lost!!! </p>;
+        }
+        if (!this.state.started) {
+            return <div><p>Waiting for player 2</p></div>;
+        }
+
         return (<div>
-            {this.state.started ?
-                <div>
                     <h1>Game board</h1>
-
-
                     <div className='boss-container'>
                         <Avatar image='../images/boss.jpg' playerObject={boss}/>
                     </div>
@@ -138,14 +135,11 @@ class GameBoard extends React.Component {
                                 socket={socket}
                                 id={id}
                                 playerTurn={playerTurn}
-                                name={this.state.thisName}
-                                friend={this.state.otherName}/>
+                                name={thisClient.name}
+                                friend={otherClient.name}/>
                         </div>
                         <Avatar image='../images/friend.jpg' playerObject={otherClient}/>
                     </div>
-                </div>
-                : <div><p>Waiting for player 2</p></div>}
-
         </div>);
     }
 }

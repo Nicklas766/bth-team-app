@@ -9,9 +9,7 @@
 const changePlayerHealth = (arr, target, amount) => {
     const targetPlayer = arr.find(player => player.name === target);
 
-    const spellReceived = amount > 0 ? 'heal' : 'boss attack';
     targetPlayer.hp += amount;
-    targetPlayer.latestSpellReceived = spellReceived;
     return arr.map(player => player.name === target ? targetPlayer : player);
 };
 
@@ -35,7 +33,7 @@ function game(io, id) {
     this.io = io;
     this.id = id;
     this.players = [];
-    this.boss    = {name: "Orc", hp: 500, latestSpellReceived: false};
+    this.boss    = {name: "Orc", hp: 500};
 }
 
 // Cast healing on a target and then update in player array
@@ -66,7 +64,6 @@ game.prototype.attack = function (socket) {
             dmg = attack;
         }
         this.boss.hp -= dmg;
-        this.boss.latestSpellReceived = 'attack';
 
         // End game if zero or below
         if (this.boss.hp <= 0) {
@@ -76,8 +73,8 @@ game.prototype.attack = function (socket) {
 
         // Find out who's the next player, or false which equals loss of game
         const nextPlayer = getNextPlayer(this.players, socket.id);
-        // Emits boss hp and dmg took, to the client
 
+        // Emits boss hp and dmg took, to the client
         this.io.sockets.in(this.id).emit(`attack ${this.id}`, {boss: this.boss, nextPlayer});
     });
 };
@@ -89,16 +86,27 @@ game.prototype.attack = function (socket) {
 */
 game.prototype.bossAttack = function (socket) {
     socket.on(`boss attack ${this.id}`, () => {
-        // Build dmg, find target.
-        const dmg          = randomInt(-20, -50);
-        const target       = this.players[randomInt(0, 2)].name;
+
+        // If false then we have no target
+        if (!getNextPlayer(this.players, socket.id)) {
+            return false;
+        }
+
+        // Build dmg and get random target
+        const dmg         = randomInt(-20, -50);
+        const randomIndex = randomInt(0, 2);
+
+        // We use our random index to find user, then check if alive or not
+        // Then based on that we either keep our first index or get other index
+        const target       = this.players[randomIndex];
+        const newIndex     = target.hp <= 0 ? (randomIndex > 0 ? 0 : 1) : randomIndex;
+        const actualTarget = this.players[newIndex].name;
 
         // Update player array, so health is correct
-        this.players = changePlayerHealth(this.players, target, dmg);
+        this.players = changePlayerHealth(this.players, actualTarget, dmg);
 
-        const updatedPlayer = this.players.find(player => player.name === target);
+        const updatedPlayer = this.players.find(player => player.name === actualTarget);
         const nextPlayer    = getNextPlayer(this.players, socket.id);
-
         // Emit which target, dmg and who's next turn it is.
         this.io.sockets.in(this.id).emit(`boss attack ${this.id}`, {updatedPlayer, nextPlayer});
     });
@@ -113,6 +121,16 @@ game.prototype.cheat = function (socket) {
         this.players[0].hp = 0;
         this.players[1].hp = 0;
     });
+
+    // If user disconnects then let other player win
+    socket.on(`disconnect`, () => {
+        this.io.sockets.in(this.id).emit(`win ${this.id}`);
+    });
+
+    socket.on(`cheat player1 ${this.id}`, () => {
+        this.players[0].hp = 0;
+    });
+
 };
 
 game.prototype.setup = function (socket, userObj) {
@@ -120,11 +138,9 @@ game.prototype.setup = function (socket, userObj) {
     const newPlayer = {
         name: userObj.user.name,
         id: socket.id,
-        hp: 250,
-        latestSpellReceived: false
+        hp: 250
     };
 
-    console.log(newPlayer);
     this.players = this.players.concat(newPlayer);
 
     // Inform all in room that new user joined
@@ -145,13 +161,13 @@ game.prototype.setup = function (socket, userObj) {
         };
 
         this.io.sockets.in(this.id).emit(`start ${this.id}`, obj);
-        console.log('game started', this.players);
     }
 };
 
 
 game.prototype.off = function (socket) {
-    // Remove from array
+    this.players = this.players.filter(player => player.id !== socket.id);
+    console.log('he left', this.players)
     socket.removeAllListeners(`attack ${this.id}`);
     socket.removeAllListeners(`heal ${this.id}`);
     socket.removeAllListeners(`boss attack ${this.id}`);

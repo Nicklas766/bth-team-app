@@ -14,7 +14,7 @@ var http   = require('http');
 var server = http.createServer(app);
 
 // socket.io and socket-container module
-const game    = require('../../src/game.js').game;
+const game    = require('../../backend/src/game.js').game;
 const socketMansion = require('socket-mansion');
 const setupRoomTest = require('socket-mansion').setupRoomTest;
 
@@ -50,6 +50,7 @@ describe("Try out the boss of the game with the socket-mansion", () => {
 
                 client2.on('boss attack room1', (obj) => {
                     assert.equal(true, ['player1', 'player2'].includes(obj.nextPlayer));
+                    console.log(obj)
 
                     // We can find out damage with subtract and the original hp
                     const dmg = obj.updatedPlayer.hp - 250;
@@ -69,6 +70,40 @@ describe("Try out the boss of the game with the socket-mansion", () => {
             func: testFunc,
             done: done,
             room: 'room1',
+            module: 'game'
+        });
+    });
+
+    it('should return with player2 as next and updated, since player1 dead', (done) => {
+        const testFunc = (client1, client2) => (done) => {
+            client2.on('start room2', () => {
+                client2.emit('cheat player1 room2');
+
+                client2.emit('boss attack room2');
+
+                client2.on('boss attack room2', (obj) => {
+                    assert.equal('player2', obj.updatedPlayer.name);
+                    assert.equal('player2', obj.nextPlayer);
+                    client2.emit('boss attack room2');
+
+                    client2.on('boss attack room2', (obj) => {
+                        assert.equal('player2', obj.updatedPlayer.name);
+                        assert.equal('player2', obj.nextPlayer);
+
+                        client1.disconnect();
+                        client2.disconnect();
+                        done();
+                    });
+                });
+            });
+        };
+
+        setupRoomTest({
+            socketURL: socketURL,
+            options: options,
+            func: testFunc,
+            done: done,
+            room: 'room2',
             module: 'game'
         });
     });

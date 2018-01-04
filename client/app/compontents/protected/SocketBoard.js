@@ -65,9 +65,9 @@ class SocketBoard extends React.Component {
 
     createRoom() {
     // The room id will simply be the length of all rooms
-        const roomId = this.state.rooms.length;
+        const roomId = this.state.rooms.length + "-" + Math.random().toString(36).substr(2, 10);
 
-        this.state.socket.emit('create room', roomId.toString(), 'game');
+        this.state.socket.emit('create room', roomId, 'game');
         this.state.socket.emit('create room', 'chat' + roomId, 'chat');
         this.state.socket.emit('get rooms');
     }

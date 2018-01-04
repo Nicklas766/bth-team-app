@@ -8,6 +8,16 @@ module.exports = {
 
         return {data: data.data, status: data.status};
     },
+    // Saves game results
+    save: async function (params) {
+        try {
+            const response = await axios.post("/protected/save", params);
+
+            return response.status;
+        } catch (err) {
+            return err.response.status;
+        }
+    },
 
     fetchUsers: async function () {
         const data = await axios.get("/api/users");
