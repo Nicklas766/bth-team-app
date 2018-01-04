@@ -30,7 +30,17 @@ class Avatar extends React.Component {
         if (this.state.effectActive) {
             this.startEffect(nextProps.playerObject, effect, 4000)
         } else {
-            this.startEffect(nextProps.playerObject, effect, 1)
+            this.setState({
+                playerObject: nextProps.playerObject,
+                effect: effect,
+                effectActive: true
+            });
+            setTimeout(() => {
+                this.setState({
+                    effect: ' ',
+                    effectActive: false
+                });
+            }, 2000);
         }
     }
 
@@ -42,13 +52,14 @@ class Avatar extends React.Component {
                 effect: effect,
                 effectActive: true
             });
-            setTimeout(() => {
-                this.setState({
-                    effect: ' ',
-                    effectActive: false
-                });
-            }, 2000);
         }, waitTime);
+
+        setTimeout(() => {
+            this.setState({
+                effect: ' ',
+                effectActive: false
+            });
+        }, waitTime + 2000);
     }
 
 

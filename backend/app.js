@@ -61,7 +61,7 @@ app.use(function(err, req, res, next) {
     // This will send a 404-code if catched and then our react-app has it's own
     // 404 route-handler which will show a "404-page".
     res.status(err.status || 500);
-    res.sendFile(__dirname + '/client/public/index.html');
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 module.exports = app;

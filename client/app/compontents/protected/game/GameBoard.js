@@ -6,6 +6,13 @@ import Avatar from './Avatar.js';
 import SpellSounds from './SpellSounds.js';
 import Sound from 'react-sound';
 
+// <Sound
+//     url="../../music/bensound-instinct.mp3"
+//     playStatus={Sound.status.PLAYING}
+//     />
+//     <h1>Game board</h1>
+//
+//     <SpellSounds socket={this.state.socket} id={this.state.id} />
 class GameBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -114,13 +121,8 @@ class GameBoard extends React.Component {
         return (<div>
             {this.state.started ?
                 <div>
-                <Sound
-                    url="music/bensound-instinct.mp3"
-                    playStatus={Sound.status.PLAYING}
-                    />
                     <h1>Game board</h1>
 
-                    <SpellSounds socket={this.state.socket} id={this.state.id} />
 
                     <div className='boss-container'>
                         <Avatar image='../images/boss.jpg' playerObject={boss}/>

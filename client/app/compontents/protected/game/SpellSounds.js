@@ -23,7 +23,7 @@ class SpellSounds extends React.Component {
     render() {
         if (this.state.attack) {
             return (<Sound
-                url="music/steelsword.mp3"
+                url="../../music/steelsword.mp3"
                 playStatus={Sound.status.PLAYING}
                 />);
         }

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const dsn = process.env.DBWEBB_DSN || "mongodb://localhost:27017/user";
+const dsn = process.env.DBWEBB_DSN || "mongodb://192.168.99.100:27017/user";
 const users = require('mongo-connecter').init(dsn, 'users');
 
 
