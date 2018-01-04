@@ -6,7 +6,7 @@ var describe = mocha.describe;
 var it = mocha.it;
 
 
-var app = require('../../app.js');
+var app = require('../../backend/app.js');
 
 var agent = require('supertest').agent(app);
 

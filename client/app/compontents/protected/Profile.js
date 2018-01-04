@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogoutButton from './LogoutButton.js';
 import SocketBoard from './SocketBoard.js';
 var api = require('../../utils/api');
 
@@ -63,7 +62,6 @@ class Profile extends React.Component {
 
                 <ProfileNav showProfile={this.showProfile} showCommunity={this.showCommunity}/>
 
-                <LogoutButton />
                 {this.state.games &&
             <div style={{minHeight: "250px", width: "100%", background: '#1E2326'}}>
                 <SocketBoard user={this.state.user} />

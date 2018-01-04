@@ -14,7 +14,7 @@ services:
     express:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: .docker/Dockerfile
         environment:
             - DBWEBB_DSN=mongodb://mongodb:27017/users
         volumes:
@@ -28,7 +28,7 @@ services:
     test:
         build:
             context: .
-            dockerfile: docker/Dockerfile-node-latest
+            dockerfile: .docker/Dockerfile-node-latest
         environment:
             - DBWEBB_DSN=mongodb://mongodb:27017/test
         links:

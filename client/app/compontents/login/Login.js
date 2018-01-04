@@ -1,7 +1,9 @@
-var React = require('react');
-var api = require('../../utils/api');
+import React from 'react';
+import api from '../../utils/api';
 var Link = require('react-router-dom').Link;
-import Sound from 'react-sound';
+import InputForm from './InputForm';
+
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class Login extends React.Component {
             message: '',
             showMsg: false
         };
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleChange      = this.handleChange.bind(this);
         this.login             = this.login.bind(this);
     }
 
@@ -23,7 +25,10 @@ class Login extends React.Component {
         });
 
         // Based on status code update state messages
-        statusCode == 200 && this.setState({ showMsg: true,  message: 'You have logged in!'});
+        if (statusCode == 200) {
+            this.setState({ showMsg: true,  message: 'You have logged in!'})
+            this.props.login();
+        }
         statusCode == 401 && this.setState({ showMsg: true,  message: 'Wrong password!'});
         statusCode == 404 && this.setState({
             showMsg: true,
@@ -33,7 +38,7 @@ class Login extends React.Component {
     }
 
 
-    handleInputChange(event) {
+    handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
     }
 
@@ -45,28 +50,21 @@ class Login extends React.Component {
                 <div className='content-header'>
                     <h3> Login </h3>
                 </div>
-                <Sound
-                    url="music/bensound-epic.mp3"
-                    playStatus={Sound.status.PLAYING}
-                    />
+
                 {this.state.showMsg && <p className='login-info'> {this.state.message} </p>}
 
                 <h3>Great to meet you! Please login.</h3>
-                <div className='login-container'>
-                    <input
-                        name={"name"}
-                        value={this.state.name}
-                        onChange={this.handleInputChange}
-                        placeholder={"Username"}/>
-                    <input
-                        name={"pass"}
-                        value={this.state.pass}
-                        onChange={this.handleInputChange}
-                        placeholder={"Password"}/>
-                    <button onClick={this.login}>Login</button>
+                <InputForm
+                    name={this.state.name}
+                    pass={this.state.pass}
+                    repeat={false}
+                    onSelect={this.login}
+                    handleChange={this.handleChange}
+                    buttonText={'Login'}
+                />
 
-                    <Link to='/create'>Create a user</Link>
-                </div>
+                <Link to='/create'>Create a user</Link>
+
             </div>
         );
     }

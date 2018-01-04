@@ -89,7 +89,8 @@ class GameBoard extends React.Component {
         });
 
 
-        // If player disconnects then leave and remove rooms
+        // When one of the players disconnect we make sure the rooms are left
+        // and removed
         socket.on(`player disconnected ${id}`, async () => {
             this.state.socket.emit('leave room', 'chat' + this.state.id);
             this.state.socket.emit('leave room', this.state.id);
@@ -102,8 +103,6 @@ class GameBoard extends React.Component {
 
 
     async endGame(result, win, loss) {
-        this.state.socket.emit('remove room', 'chat' + this.state.id);
-        this.state.socket.emit('remove room', this.state.id);
         this.setState({gameResult: result});
         await api.save({win: win, loss: loss});
     }
