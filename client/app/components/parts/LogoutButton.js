@@ -24,12 +24,13 @@ class LogoutButton extends React.Component {
             return <div></div>;
         }
 
-        return <Link to='/'><button onClick={this.logout}> Logout </button></Link>;
+        return <Link onClick={this.logout} to='/'> Logout </Link>;
     }
 }
 
 LogoutButton.propTypes = {
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    loggedIn: PropTypes.bool.isRequired
 };
 
 

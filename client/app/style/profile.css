@@ -1,0 +1,104 @@
+/*****************************************************************************/
+
+/* PROFILE */
+
+.profile-nav {
+    height: 250px;
+    background: rgb(30, 35, 38) none repeat scroll 0% 0%;
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 1px silver;
+}
+
+.profile-nav img {
+    width: 25%;
+    height: 100%;
+}
+
+.profile-nav a {
+    width: 37.5%;
+    height: 100%;
+    box-shadow: inset 1px 1px 10px 1px #1eaadd;
+}
+
+.profile-nav a:hover {
+    box-shadow: inset 1px 1px 10px 1px black;
+    cursor: pointer;
+}
+
+.profile-nav a img {
+    height: 110px;
+    margin-top: 10px
+}
+
+/*  */
+
+/* Community */
+
+.community-container {
+    background: rgb(30, 35, 38) none repeat scroll 0% 0%;
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 1px silver;
+    min-height: 600px;
+}
+
+.score-container {
+    width: 29.5%;
+    border-left: solid 1px silver;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th,
+td {
+
+    border: solid 1px #1EAADD;
+}
+
+.room-container {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.room-scroll {
+    max-height: 500px;
+    overflow-y: scroll;
+    width: 100%;
+    padding: 10px;
+}
+
+.room-header {
+    width: 100%;
+    text-align: center;
+    background: #1e2326;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: auto;
+}
+
+.room-header button {
+    padding: 10px;
+    width: 33%;
+}
+
+.room-header select {
+    padding: 10px;
+    width: 33%;
+}
+
+.room {
+    background: #212427;
+    margin: 2% auto;
+    width: 90%;
+    text-align: left;
+    border: solid 1px #1eaadd;
+    padding: 5px;
+    border-radius: 0.1em;
+}

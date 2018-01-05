@@ -22,6 +22,12 @@ class Create extends React.Component {
             this.setState({ showMsg: true, message: 'Fail! Passwords are not matching' });
             return false;
         }
+
+        if (this.state.name.length > 9) {
+            this.setState({ showMsg: true, message: 'Fail! Username can have 9 characters max' });
+            return false;
+        }
+
         const statusCode = await api.createAccount({
             name: this.state.name,
             pass: this.state.pass,

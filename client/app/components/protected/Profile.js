@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import SocketBoard from './SocketBoard.js';
 var api = require('../../utils/api');
 
-
 const ProfileNav = (props) => {
     return (
     <div className='profile-nav'>
@@ -18,13 +17,10 @@ const ProfileNav = (props) => {
     );
 }
 
-
 ProfileNav.propTypes = {
     showProfile: PropTypes.func.isRequired,
     showCommunity: PropTypes.func.isRequired
 };
-
-
 
 class Profile extends React.Component {
     constructor(props) {
@@ -58,23 +54,22 @@ class Profile extends React.Component {
     render() {
         return (
             <div className='content-container'>
+
                 {this.state.loading && <p> loading </p>}
 
                 <ProfileNav showProfile={this.showProfile} showCommunity={this.showCommunity}/>
 
                 {this.state.games &&
-            <div style={{minHeight: "250px", width: "100%", background: '#1E2326'}}>
-                <SocketBoard user={this.state.user} />
-            </div>}
+                <div style={{minHeight: "250px", width: "100%", background: '#1E2326'}}>
+                    <SocketBoard user={this.state.user} />
+                </div>}
 
                 {!this.state.games &&
-            <div style={{minHeight: "250px", width: "100%", background: '#1E2326'}}>
-                {this.state.user.name}
-                <h3> Wins: {this.state.user.wins}</h3>
-                <h3> losses: {this.state.user.losses}</h3>
-            </div>}
-
-
+                 <div className='profile-nav'>
+                    {this.state.user.name}
+                    <h3> Wins: {this.state.user.wins}</h3>
+                    <h3> losses: {this.state.user.losses}</h3>
+                </div>}
             </div>
         );
     }

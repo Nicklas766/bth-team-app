@@ -73,19 +73,6 @@ input {
     color: #1eaadd;
 }
 
-.content-header {
-    height: 30px;
-    background: #3a3b3d;
-    text-align: left;
-    line-height: 30px;
-    margin: 0;
-    color: #1eaadd;
-}
-
-.content-header h3 {
-    margin: 0% 5%;
-    text-transform: uppercase;
-}
 
 .wrap-all {
     width: 100%;
@@ -105,32 +92,6 @@ input {
     flex-wrap: wrap;
 }
 
-/* HEADER */
-
-.header {
-    display: flex;
-    background: #1e2326;
-    width: 100%;
-    color: #ededee;
-    height: 60px;
-    border-bottom: solid 5px #2d2e32;
-    text-align: left;
-    color: #1eaadd;
-}
-
-.header nav {
-    width: 70%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-
-.header nav a {
-    margin: 0 5%;
-    color: white;
-    text-decoration: none;
-}
 
 h1 {
     color: white;
@@ -152,88 +113,7 @@ footer {
     color: #ededee;
 }
 
-/*****************************************************************************/
 
-/* PROFILE */
-
-.profile-nav {
-    height: 250px;
-    width: 100%;
-    background: rgb(30, 35, 38) none repeat scroll 0% 0%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.profile-nav img {
-    width: 25%;
-    height: 100%;
-}
-
-.profile-nav a {
-    width: 37.5%;
-    height: 100%;
-    background: #1eaadd;
-    box-shadow: inset 1px 1px 3px 1px black;
-}
-
-.profile-nav a:hover {
-    box-shadow: inset 1px 1px 10px 1px black;
-    cursor: pointer;
-}
-
-.profile-nav a img {
-    height: 110px;
-    margin-top: 10px
-}
-
-/* Community */
-
-.room-container {
-    width: 70%;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 5% auto;
-    border: solid 1px;
-    box-shadow: 1px 1px 4px 1px black;
-}
-
-.room-scroll {
-    max-height: 500px;
-    overflow-y: scroll;
-    width: 100%;
-    padding: 10px;
-}
-
-.room-header {
-    width: 100%;
-    text-align: center;
-    background: #1e2326;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 1px;
-    margin: auto;
-}
-
-.room-header button {
-    padding: 10px;
-    width: 33%;
-}
-
-.room-header select {
-    padding: 10px;
-    width: 33%;
-}
-
-.room {
-    background: #212427;
-    margin: 2% auto;
-    width: 90%;
-    text-align: left;
-    border: solid 1px #1eaadd;
-    padding: 5px;
-    border-radius: 0.1em;
-}
 
 /*****************************************************************************/
 

@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import io from 'socket.io-client';
-
 import GameBoard from './game/GameBoard.js';
 import Chat from '../Chat.js';
+import Users from './Users.js';
 import Sound from 'react-sound';
 
 const Games = (props) => {
     // Get available games
     console.log(props.rooms);
-    return props.rooms.reverse().map(room =>
+    return props.rooms.map(room =>
         <div key={room.id} className='room'>
             <h3> Game {room.id} </h3>
             <h3> Game {console.log(room.users)} </h3>
@@ -33,7 +32,7 @@ class SocketBoard extends React.Component {
             user: this.props.user, // The user from DB, atm random string
             rooms: [],
             inRoom: false,
-            room: false
+            room: 'false'
         };
         this.joinRoom = this.joinRoom.bind(this);
         this.createRoom = this.createRoom.bind(this);
@@ -74,6 +73,9 @@ class SocketBoard extends React.Component {
     }
 
     joinRoom() {
+        if (this.state.room === 'false') {
+            return false;
+        }
         this.state.socket.emit('join room', this.state.room);
         this.state.socket.emit('join room', 'chat' + this.state.room);
         this.state.socket.emit('get rooms');
@@ -85,11 +87,8 @@ class SocketBoard extends React.Component {
 
         if (this.state.inRoom) {
             return (
-                <div className='content-container'>
-                <Sound
-                    url="../../music/bensound-instinct.mp3"
-                    playStatus={Sound.status.PLAYING}
-                    />
+                <div className='community-container'>
+                <Sound url="../../music/bensound-instinct.mp3" playStatus={Sound.status.PLAYING} />
                     <GameBoard socket={socket} id={room} name={user.name}>
                         <Chat socket={socket} id={'chat' + room} />
                     </GameBoard>
@@ -98,10 +97,7 @@ class SocketBoard extends React.Component {
         }
 
         return (
-            <div style={{minHeight: "250px", width: "100%", background: '#1E2326'}}>
-                <div className='content-header'>
-                    <h3> Community </h3>
-                </div>
+            <div className='community-container'>
 
                 <div className='room-container'>
                     <div className='room-header'>
@@ -109,6 +105,7 @@ class SocketBoard extends React.Component {
                         <button onClick={this.createRoom}>Create new game</button>
                         <button onClick={this.joinRoom}>Join Game</button>
                         <select value={this.state.room} onChange={this.handleChange}>
+                            <option value={'false'}>Choose a game</option>
                             <Options rooms={rooms} />
                         </select>
                     </div>
@@ -116,6 +113,8 @@ class SocketBoard extends React.Component {
                         <Games rooms={rooms} />
                     </div>
                 </div>
+
+                <Users />
 
             </div>
         );

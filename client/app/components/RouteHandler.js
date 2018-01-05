@@ -1,28 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// Router
-var ReactRouter = require('react-router-dom');
-var Router = ReactRouter.BrowserRouter;
-var Route = ReactRouter.Route;
-import { Redirect, Switch } from 'react-router-dom';
-import api from '../utils/api';
+import { Switch, Route } from 'react-router-dom';
 import Sound from 'react-sound';
-// Wrapper
 
 
-// Route Paths
-var Home = require('./page/Home');
-
-// Login and Create
-var Login = require('./login/Login');
-var Create = require('./login/Create');
-
+// Components
+import Home from './page/Home';
+import About from './page/About';
+import Login from './login/Login';
+import Create from './login/Create';
 // Protected paths in express.js, all who require socket.io
-var Profile = require('./protected/Profile.js');
+import Profile from './protected/Profile.js';
 
-const Audio = (props) => {
+
+const Main = (props) => {
     return (<div>
-        <Sound url={'../music/bensound-epic.mp3'} playStatus={Sound.status.PLAYING} />
+        <Sound url={'../music/bensound-ofeliasdream.mp3'} playStatus={Sound.status.PLAYING} />
         {props.children}
     </div>);
 }
@@ -35,13 +28,11 @@ class RouteHandler extends React.Component {
         return (
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    <Audio>
-                    <Route exact path='/login' component={() => <Login login={login}/>} />
+                    <Route exact path='/about' component={About} />
                     <Route exact path='/create' component={Create} />
-                    </Audio>
+                    <Route exact path='/login' component={() => <Login login={login}/>} />
                     <Route exact path='/protected/profile' component={Profile} />
                     <Route render={() => <div><h1>404 not found</h1></div>} />
-
                 </Switch>
         );
     }

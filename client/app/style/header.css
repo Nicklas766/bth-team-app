@@ -1,0 +1,115 @@
+/* HEADER */
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    background: #1e2326;
+    width: 100%;
+    color: #ededee;
+    height: 60px;
+    color: #1eaadd;
+    box-shadow: inset 1px 1px 4px 1px white;
+    border-left: solid 0.5px silver;
+    border-right: solid 0.5px silver;
+    border-top: solid 0.5px silver;
+}
+
+.header h1 {
+    margin: 0;
+}
+.header a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+}
+
+
+/* Logo */
+
+.header .logo {
+    width: 20%;
+    box-shadow: inset 1px 1px 60px 1px black;
+    display: flex;
+    align-items: center;
+}
+
+
+/* General */
+.header .general-choice {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    box-shadow: inset 1px 1px 60px 1px black;
+}
+
+.header .general-choice a {
+    transition: 0.5s;
+    height: 100%;
+    width: 49.5%;
+    border-left: solid .5px silver;
+}
+
+.header .general-choice a:hover {
+    font-size: 1.1em;
+    box-shadow: inset 1px 1px 30px 1px orange;
+}
+
+
+/* Login */
+
+.login-nav {
+    display: flex;
+    width: 20%;
+    box-shadow: inset 1px 1px 60px 1px #209ECB;
+    display: flex;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.login-nav a {
+    transition: 0.5s;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-left: solid .5px silver;
+
+}
+
+.login-nav a:hover {
+    font-size: 1.1em;
+    box-shadow: 1px 1px 20px 1px #209ECB;
+
+}
+
+
+.header nav a:hover {
+    transition: 0.2s;
+    box-shadow: inset 1px 1px 60px 1px orange;
+    font-size: 1.1em;
+}
+
+
+
+
+/* Content-header */
+
+.content-header {
+    height: 30px;
+    box-shadow: inset 1px 1px 60px 1px #3a3b3d;
+    text-align: left;
+    line-height: 30px;
+    margin: 0;
+    color: #1eaadd;
+}
+
+.content-header h3 {
+    margin: 0% 5%;
+    text-transform: uppercase;
+}
