@@ -141,10 +141,9 @@ följande,
 
 ```
 // Om MongoDB inte är igång så startas den automatiskt innan
-npm run test-docker // Kommer starta alla i en docker-compose -d
+npm run test-docker
 npm run test-docker1
 npm run test-docker2
-npm run test-docker3
 ```
 
 ### Testning lokalt

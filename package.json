@@ -11,8 +11,11 @@
     "eslint": "node_modules/.bin/eslint --ignore-path .eslintignore .",
     "eslint-fix": "node_modules/.bin/eslint --ignore-path .eslintignore --fix .",
     "coverage-scrut": "nyc --reporter=clover mocha --reporter spec test/react/testSetup.js \"test/**/*.spec.js\"",
-    "docker1": "docker-compose up --no-deps --build test",
-    "docker-build-start": "docker-compose up -d --no-deps --build"
+    "start-docker": "docker-compose up -d express",
+    "stop-docker": "docker-compose down",
+    "test-docker": "docker-compose up test",
+    "test-docker1": "docker-compose up test2",
+    "test-docker2": "docker-compose up test3"
   },
   "author": "Nicklas Envall",
   "license": "MIT",
