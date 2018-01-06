@@ -50,7 +50,7 @@ describe("Try out the boss of the game with the socket-mansion", () => {
 
                 client2.on('boss attack room1', (obj) => {
                     assert.equal(true, ['player1', 'player2'].includes(obj.nextPlayer));
-                    console.log(obj)
+                    console.log(obj);
 
                     // We can find out damage with subtract and the original hp
                     const dmg = obj.updatedPlayer.hp - 250;

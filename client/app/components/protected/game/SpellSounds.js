@@ -12,20 +12,19 @@ class SpellSounds extends React.Component {
     }
 
     componentDidMount() {
-        this.state.socket.on(`attack ${this.state.id}`, (obj) => {
+        this.state.socket.on(`attack ${this.state.id}`, () => {
             this.setState({attack: true, heal: false, boss: false});
         });
 
-        this.state.socket.on(`heal ${this.state.id}`, (obj) => {
+        this.state.socket.on(`heal ${this.state.id}`, () => {
             this.setState({attack: false, heal: true, boss: false});
         });
 
-        this.state.socket.on(`boss attack ${this.state.id}`, (obj) => {
+        this.state.socket.on(`boss attack ${this.state.id}`, () => {
             setTimeout(() => {
                 this.setState({attack: false, heal: false, boss: true});
             }, 4000);
         });
-
     }
 
     render() {
@@ -33,24 +32,27 @@ class SpellSounds extends React.Component {
             return (<Sound
                 url="../../music/steelsword.mp3"
                 playStatus={Sound.status.PLAYING}
-                />);
+            />);
         }
         if (this.state.heal) {
             return (<Sound
                 url="../../music/heal.ogg"
                 playStatus={Sound.status.PLAYING}
-                />);
+            />);
         }
         if (this.state.boss) {
             return (<Sound
                 url="../../music/boss.mp3"
                 playStatus={Sound.status.PLAYING}
-                />);
+            />);
         }
-        return <p> no sound </p>
-
+        return <p> Welcome to the game </p>;
     }
 }
 
+SpellSounds.propTypes = {
+    socket: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired
+};
 
-    module.exports = SpellSounds;
+module.exports = SpellSounds;

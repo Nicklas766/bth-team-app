@@ -88,7 +88,9 @@ class SocketBoard extends React.Component {
         if (this.state.inRoom) {
             return (
                 <div className='community-container'>
-                <Sound url="../../music/bensound-instinct.mp3" playStatus={Sound.status.PLAYING} />
+                    <Sound
+                        url="../../music/bensound-instinct.mp3"
+                        playStatus={Sound.status.PLAYING} />
                     <GameBoard socket={socket} id={room} name={user.name}>
                         <Chat socket={socket} id={'chat' + room} />
                     </GameBoard>

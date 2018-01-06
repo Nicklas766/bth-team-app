@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const healTransition = {
-    transition: 'all 1s ease-out'
-}
 /**
 * This clients avatar for health
 */
+
 class Avatar extends React.Component {
     constructor(props) {
         super(props);
@@ -25,10 +23,11 @@ class Avatar extends React.Component {
         const conditionHeal = playerObject.hp < nextProps.playerObject.hp;
         const conditionDmg = playerObject.hp > nextProps.playerObject.hp;
         const effect = conditionHeal ? 'heal' : (conditionDmg ? 'dmg' : ' ');
-        console.log(effect)
+
+        console.log(effect);
 
         if (this.state.effectActive) {
-            this.startEffect(nextProps.playerObject, effect, 4000)
+            this.startEffect(nextProps.playerObject, effect, 4000);
         } else {
             this.setState({
                 playerObject: nextProps.playerObject,

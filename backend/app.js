@@ -36,7 +36,7 @@ app.use('/protected', protectedRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', express.static(path.join(__dirname, 'public')));
 app.use('/create', express.static(path.join(__dirname, 'public')));
-app.use('/example', express.static(path.join(__dirname, 'public')));
+app.use('/about', express.static(path.join(__dirname, 'public')));
 app.use('/protected/profile', express.static(path.join(__dirname, 'public')));
 
 

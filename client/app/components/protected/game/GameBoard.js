@@ -9,22 +9,20 @@ import api from '../../../utils/api';
 
 
 
-
-
-
-
 // Checks if updated player is current client, based on that
 // We know which client we need to update
 const getClientKey = (currClient, updatedPlayer) => {
     const thisClientUpdated = updatedPlayer.name === currClient.name;
+
     return thisClientUpdated ? 'thisClient' : 'otherClient';
-}
+};
 
 const getClients = (players, name) => {
     const thisClient  = players.find(player => player.name === name);
     const otherClient = players.filter(player => player.name !== name)[0];
-    return {thisClient, otherClient}
-}
+
+    return {thisClient, otherClient};
+};
 
 
 class GameBoard extends React.Component {
@@ -51,6 +49,7 @@ class GameBoard extends React.Component {
         // On.('start') setups our game and starts it
         socket.on(`start ${id}`, (obj) => {
             const {thisClient, otherClient} = getClients(obj.players, name);
+
             this.setState({
                 thisClient: thisClient,
                 otherClient: otherClient,
@@ -66,12 +65,14 @@ class GameBoard extends React.Component {
                 return this.endGame('lost', 0, 1);
             }
             const key = getClientKey(this.state.thisClient, obj.updatedPlayer);
+
             this.setState({[key]: obj.updatedPlayer});
         });
 
         // We receive target and heal when someone has chosen heal
         socket.on(`heal ${id}`, (obj) => {
             const key = getClientKey(this.state.thisClient, obj.updatedPlayer);
+
             this.setState({
                 [key]: obj.updatedPlayer,
                 playerTurn: obj.nextPlayer
@@ -108,7 +109,8 @@ class GameBoard extends React.Component {
     }
 
     render() {
-        const {boss, thisClient, socket, id, playerTurn, otherClient, gameResult, disconnected} = this.state;
+        const {boss, thisClient, socket, id, playerTurn,
+            otherClient, gameResult, disconnected} = this.state;
 
         if (disconnected) {
             return <p> The person playing with you disconnected! </p>;
@@ -125,28 +127,28 @@ class GameBoard extends React.Component {
         }
 
         return (<div>
-                    <h1>Game board</h1>
-                    <div className='boss-container'>
-                        <Avatar image='../images/boss.jpg' playerObject={boss}/>
-                    </div>
+            <h1>Game board</h1>
+            <div className='boss-container'>
+                <Avatar image='../images/boss.jpg' playerObject={boss}/>
+            </div>
 
-                    <SpellSounds socket={this.state.socket} id={this.state.id} />
+            <SpellSounds socket={this.state.socket} id={this.state.id} />
 
-                    <div className='player-container'>
+            <div className='player-container'>
 
-                        <Avatar image='../images/knight.jpg' playerObject={thisClient}/>
+                <Avatar image='../images/knight.jpg' playerObject={thisClient}/>
 
-                        <div className='action-bar'>
-                            {this.props.children}
-                            <SpellBar style={{display: 'flex', width: '50%'}}
-                                socket={socket}
-                                id={id}
-                                playerTurn={playerTurn}
-                                name={thisClient.name}
-                                friend={otherClient.name}/>
-                        </div>
-                        <Avatar image='../images/friend.jpg' playerObject={otherClient}/>
-                    </div>
+                <div className='action-bar'>
+                    {this.props.children}
+                    <SpellBar style={{display: 'flex', width: '50%'}}
+                        socket={socket}
+                        id={id}
+                        playerTurn={playerTurn}
+                        name={thisClient.name}
+                        friend={otherClient.name}/>
+                </div>
+                <Avatar image='../images/friend.jpg' playerObject={otherClient}/>
+            </div>
         </div>);
     }
 }

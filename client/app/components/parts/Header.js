@@ -4,23 +4,29 @@ import {NavLink} from 'react-router-dom';
 
 
 const NotLoginHeader = () => (
-        <div className='login-nav'>
-            <NavLink exact activeClassName='active' to='/login'> Login </NavLink>
-            <NavLink exact activeClassName='active' to='/create'> Create </NavLink>
-        </div>
+    <div className='login-nav'>
+        <NavLink exact activeClassName='active' to='/login'> Login </NavLink>
+        <NavLink exact activeClassName='active' to='/create'> Create </NavLink>
+    </div>
 );
 
 const LoginHeader = (props) => (
-        <div className='login-nav'>
-            <NavLink exact activeClassName='active' to='/protected/profile'> {props.userName} </NavLink>
-            {props.children}
-        </div>
+    <div className='login-nav'>
+        <NavLink exact activeClassName='active' to='/protected/profile'> {props.userName} </NavLink>
+        {props.children}
+    </div>
 );
+
+LoginHeader.propTypes = {
+    userName: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired
+};
 
 
 class Header extends React.Component {
     render() {
         const {loggedIn, user, children} = this.props;
+
         return (<div className='header'>
 
             <div className='logo'>
@@ -35,12 +41,8 @@ class Header extends React.Component {
             </div>
 
 
-                    {!loggedIn && <NotLoginHeader /> }
-                    {loggedIn && <LoginHeader userName={user.name}>{children} </LoginHeader> }
-
-
-
-
+            {!loggedIn && <NotLoginHeader /> }
+            {loggedIn && <LoginHeader userName={user.name}>{children} </LoginHeader> }
 
         </div>);
     }

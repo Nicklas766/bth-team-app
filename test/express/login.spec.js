@@ -61,9 +61,10 @@ describe('Create a user and login with it', () => {
 
 describe('Try out logout by checking that we can access profile and then not', () => {
     it('should return user nicklas as an object', (done) => {
-        agent.get("/protected/profile")
+        agent.get("/protected/profiledata")
             .set('Accept', 'application/json')
             .expect(function(res) {
+                console.log(res.body);
                 assert.equal(res.body.name, 'nicklas');
                 assert.equal(res.body.pass, 'password123');
             })
@@ -76,7 +77,7 @@ describe('Try out logout by checking that we can access profile and then not', (
     });
 
     it('should return a 302 response and redirect to /login', (done) => {
-        agent.get("/protected/profile")
+        agent.get("/protected/profiledata")
             .expect('Location', '/login')
             .expect(302, done);
     });

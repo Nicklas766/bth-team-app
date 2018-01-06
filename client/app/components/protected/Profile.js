@@ -5,17 +5,17 @@ var api = require('../../utils/api');
 
 const ProfileNav = (props) => {
     return (
-    <div className='profile-nav'>
-        <img src="../images/knight.jpg"/>
-        <a onClick={props.showProfile.bind(this)} className='profile'>
-            <img src="../images/user.png"/> <p> Profile </p>
-        </a>
-        <a onClick={props.showCommunity.bind(this)}> <img src="../images/group.png"/>
-            <p>Search for games </p>
-        </a>
-    </div>
+        <div className='profile-nav'>
+            <img src="../images/knight.jpg"/>
+            <a onClick={props.showProfile.bind(this)} className='profile'>
+                <img src="../images/user.png"/> <p> Profile </p>
+            </a>
+            <a onClick={props.showCommunity.bind(this)}> <img src="../images/group.png"/>
+                <p>Search for games </p>
+            </a>
+        </div>
     );
-}
+};
 
 ProfileNav.propTypes = {
     showProfile: PropTypes.func.isRequired,
@@ -66,10 +66,10 @@ class Profile extends React.Component {
 
                 {!this.state.games &&
                  <div className='profile-nav'>
-                    {this.state.user.name}
-                    <h3> Wins: {this.state.user.wins}</h3>
-                    <h3> losses: {this.state.user.losses}</h3>
-                </div>}
+                     {this.state.user.name}
+                     <h3> Wins: {this.state.user.wins}</h3>
+                     <h3> losses: {this.state.user.losses}</h3>
+                 </div>}
             </div>
         );
     }

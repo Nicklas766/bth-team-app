@@ -29,11 +29,11 @@ class InputForm extends React.Component {
                     value={this.props.repeat}
                     onChange={this.props.handleChange}
                     placeholder={"Repeat password"}/>
-                }
+            }
 
             <button onClick={this.props.onSelect}>{this.props.buttonText}</button>
         </div>);
-        }
+    }
 }
 
 InputForm.propTypes = {

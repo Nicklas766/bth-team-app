@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import api from '../../utils/api';
 var Link = require('react-router-dom').Link;
+
 import InputForm from './InputForm';
 
 
@@ -26,7 +28,7 @@ class Login extends React.Component {
 
         // Based on status code update state messages
         if (statusCode == 200) {
-            this.setState({ showMsg: true,  message: 'You have logged in!'})
+            this.setState({ showMsg: true,  message: 'You have logged in!'});
             this.props.login();
         }
         statusCode == 401 && this.setState({ showMsg: true,  message: 'Wrong password!'});
@@ -69,5 +71,9 @@ class Login extends React.Component {
         );
     }
 }
+
+Login.propTypes = {
+    login: PropTypes.func.isRequired
+};
 
 module.exports = Login;

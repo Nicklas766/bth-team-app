@@ -38,11 +38,12 @@ class LoginChecker extends React.Component {
 
 
     logout() {
-        this.setState({loggedIn: false})
+        this.setState({loggedIn: false});
     }
     // <Audio url='../music/bensound-epic.mp3'><Login setLoggedIn={this.login}/></Audio>
     render() {
         const {loggedIn, user} = this.state;
+
         return (<div className='container'>
 
             <Header loggedIn={loggedIn} user={user}>

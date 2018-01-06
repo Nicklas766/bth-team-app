@@ -86,9 +86,9 @@ game.prototype.attack = function (socket) {
 */
 game.prototype.bossAttack = function (socket) {
     socket.on(`boss attack ${this.id}`, () => {
-
         // If false then we have no target
         if (!getNextPlayer(this.players, socket.id)) {
+            this.io.sockets.in(this.id).emit(`boss fail ${this.id}`);
             return false;
         }
 
@@ -108,6 +108,7 @@ game.prototype.bossAttack = function (socket) {
         const updatedPlayer = this.players.find(player => player.name === actualTarget);
         const nextPlayer    = getNextPlayer(this.players, socket.id);
         // Emit which target, dmg and who's next turn it is.
+
         this.io.sockets.in(this.id).emit(`boss attack ${this.id}`, {updatedPlayer, nextPlayer});
     });
 };
@@ -130,7 +131,6 @@ game.prototype.cheat = function (socket) {
     socket.on(`cheat player1 ${this.id}`, () => {
         this.players[0].hp = 0;
     });
-
 };
 
 game.prototype.setup = function (socket, userObj) {
@@ -167,7 +167,6 @@ game.prototype.setup = function (socket, userObj) {
 
 game.prototype.off = function (socket) {
     this.players = this.players.filter(player => player.id !== socket.id);
-    console.log('he left', this.players)
     socket.removeAllListeners(`attack ${this.id}`);
     socket.removeAllListeners(`heal ${this.id}`);
     socket.removeAllListeners(`boss attack ${this.id}`);

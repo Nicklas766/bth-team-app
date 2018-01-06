@@ -20,7 +20,7 @@ describe('Tests for the /protected route and api', () => {
 
     describe('Try to access pages that are protected by login', () => {
         it('should return a 302 response and redirect to /login', (done) => {
-            agent.get("/protected/profile")
+            agent.get("/protected/profiledata")
                 .expect('Location', '/login')
                 .expect(302, done);
         });
@@ -35,7 +35,7 @@ describe('Tests for the /protected route and api', () => {
 
     // Note that we are not testing create and login here, we're only doing it
     // to setup the testing enviorment
-    describe('Create & Login and then get data from user from /protected/profile', () => {
+    describe('Create & Login and then get data from user from /protected/profiledata', () => {
         it('should create user and return user object', (done) => {
             agent.post("/account/insert")
                 .set('Accept', 'application/json')
@@ -57,7 +57,7 @@ describe('Tests for the /protected route and api', () => {
         });
 
         it('should return data for the user we logged in with', (done) => {
-            agent.get("/protected/profile")
+            agent.get("/protected/profiledata")
                 .set('Accept', 'application/json')
                 .expect(function(res) {
                     assert.equal(res.body.name, 'James');

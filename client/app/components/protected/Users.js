@@ -14,44 +14,24 @@ const Table = (props) => (
         {props.children}
 
     </table>
-)
+);
 
 Table.propTypes = {
     children: PropTypes.node.isRequired
 };
 
 const UserScores = (props) => {
-    const {users} = props;
-
-    const mockUsers = [
-        {
-            name: 'Jamesbond',
-            wins: 2,
-            losses: 0
-        },
-        {
-            name: 'Searcher',
-            wins: 10,
-            losses: 0
-        },
-        {
-            name: 'Bloodeye',
-            wins: 10,
-            losses: 0
-        },
-    ]
-    const sortedUsers = mockUsers.sort((curr, next) => (curr.wins < next.wins));
+    const sortedUsers = props.users.sort((curr, next) => (curr.wins < next.wins));
 
     return sortedUsers.map(user =>
-        <tr>
+        <tr key={user.name + 'score'}>
             <td>{user.name}</td>
             <td>{user.wins}</td>
             <td>{user.losses}</td>
             <td>{user.wins + user.losses}</td>
         </tr>
-    )
-
-}
+    );
+};
 
 UserScores.propTypes = {
     users: PropTypes.array.isRequired
@@ -64,18 +44,17 @@ class Users extends React.Component {
             loading: true,
             users: []
         };
-
     }
 
     componentDidMount() {
         api.fetchUsers().
-        then((users) => {
-            this.setState({
-                loading: false,
-                users: users
-            })
-        }).
-        catch(err => console.log(err));
+            then((users) => {
+                this.setState({
+                    loading: false,
+                    users: users
+                });
+            }).
+            catch(err => console.log(err));
     }
 
 
@@ -83,13 +62,13 @@ class Users extends React.Component {
     render() {
         return (<div className='score-container'>
 
-                <div className='room-header'>
-                    <p> Scoreboard </p>
-                </div>
+            <div className='room-header'>
+                <p> Scoreboard </p>
+            </div>
 
-                {this.state.loading && <p>loading...</p>}
+            {this.state.loading && <p>loading...</p>}
 
-                {!this.state.loading && <Table> <UserScores users={this.state.users} /></Table>}
+            {!this.state.loading && <Table> <UserScores users={this.state.users} /></Table>}
         </div>);
     }
 }

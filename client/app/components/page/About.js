@@ -32,9 +32,9 @@ class About extends React.Component {
                 <CreateLink url={'https://github.com/Nicklas766/socket-mansion'} />
                 <CreateLink url={'https://github.com/Nicklas766/mongo-connecter'} />
 
-                <p> I'm no designer, but I always strive to make it look good aswell.
-                    I have borrowed some awesome music and images to make the website
-                    more "complete". Below you can see the credits for these. </p>
+                <p> I am not a designer, but I always strive to make it look good aswell.
+                I have borrowed some awesome music and images to make the website
+                feel more alive. Below you can see the credits for these.</p>
 
 
                 <p> The music for the login and battle is made by www.bensound.com </p>
@@ -44,17 +44,21 @@ class About extends React.Component {
                 <CreateLink url={'https://pixabay.com/'} />
 
 
-                <p> Icons I've used from flaticon </p>
+                <p> Icons are used from flaticon </p>
 
 
                 <LinkWithText url={'https://www.flaticon.com'} text={'flaticon'}/>
 
                 <p>Authors</p>
                 <LinkWithText url={'https://www.flaticon.com/authors/becris'} text={'Becris'}/>
-                <LinkWithText url={'https://www.flaticon.com/authors/smashicons'} text={'Smashicons'}/>
+                <LinkWithText
+                    url={'https://www.flaticon.com/authors/smashicons'}
+                    text={'Smashicons'}/>
                 <LinkWithText url={'http://www.freepik.com'} text={'Freepik'}/>
                 <LinkWithText url={'https://www.flaticon.com/authors/baianat'} text={'Baianat'}/>
-                <LinkWithText url={'https://www.flaticon.com/authors/gregor-cresnar'} text={'Gregor Cresnar'}/>
+                <LinkWithText
+                    url={'https://www.flaticon.com/authors/gregor-cresnar'}
+                    text={'Gregor Cresnar'}/>
 
             </div>
         );

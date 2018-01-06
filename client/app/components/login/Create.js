@@ -1,6 +1,7 @@
 var React = require('react');
 var api = require('../../utils/api');
 var Link = require('react-router-dom').Link;
+
 import InputForm from './InputForm';
 
 class Create extends React.Component {
@@ -63,14 +64,14 @@ class Create extends React.Component {
 
                 <h3>Join our community!</h3>
                 <InputForm
-                    name={this.state.name}
-                    pass={this.state.pass}
-                    repeat={this.state.repeat}
+                    name={name}
+                    pass={pass}
+                    repeat={repeat}
                     onSelect={this.createAccount}
                     handleChange={this.handleChange}
                     buttonText={'Create'}
                 />
-                    <Link to='/login'>Login</Link>
+                <Link to='/login'>Login</Link>
             </div>
         );
     }

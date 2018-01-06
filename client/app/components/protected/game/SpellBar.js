@@ -52,7 +52,7 @@ class SpellBar extends React.Component {
         this.nextTurn();
     }
     heal(event) {
-        console.log('I will heal', event.target.value)
+        console.log('I will heal', event.target.value);
         console.log(event.target.value);
         this.state.socket.emit(`heal ${this.state.id}`, event.target.value);
         this.nextTurn();
@@ -63,12 +63,12 @@ class SpellBar extends React.Component {
         if (!this.state.started) {
             return (<div className='spell-bar'>
                 <p> Game starts in 5 sec </p>
-            </div>)
+            </div>);
         }
         if (!this.state.yourTurn) {
             return (<div className='spell-bar'>
                 <p> {this.state.friend} turn </p>
-            </div>)
+            </div>);
         }
 
 
@@ -79,9 +79,9 @@ class SpellBar extends React.Component {
 
 
         return (<div className='spell-bar'>
-                <button onClick={this.attack} style={spellStyle1} className='spell' />
-                <button onClick={this.heal} value={name} style={spellStyle2} className='spell' />
-                <button onClick={this.heal} value={friend} style={spellStyle3} className='spell' />
+            <button onClick={this.attack} style={spellStyle1} className='spell' />
+            <button onClick={this.heal} value={name} style={spellStyle2} className='spell' />
+            <button onClick={this.heal} value={friend} style={spellStyle3} className='spell' />
         </div>);
     }
 }
