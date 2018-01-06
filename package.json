@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "concurrently \"npm run mocha\" \"npm run stylelint\" \"npm run eslint\"",
-    "mocha": "nyc --reporter=html --reporter=text mocha --reporter spec test/react/testSetup.js \"test/**/*.spec.js\"",
+    "mocha": "nyc --reporter=html --reporter=text mocha --reporter spec \"test/**/*.spec.js\"",
     "stylelint": "node_modules/.bin/stylelint **/*.css",
     "eslint": "node_modules/.bin/eslint --ignore-path .eslintignore .",
     "eslint-fix": "node_modules/.bin/eslint --ignore-path .eslintignore --fix .",
