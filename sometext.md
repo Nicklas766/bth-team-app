@@ -115,7 +115,8 @@ cd bth-team-app
 om du skulle vilja använda en annan DSN än `localhost`.
 
 2. `export DBWEBB_PORT=80` gör så servern kommer startas på port 80 istället för 1337,
-du får valfritt välja.
+du får valfritt välja. Det är `- ./data/db:/data/db` som default, om du använder
+windows så kan du behöva ändra till `C:/data/db:/data/db` för MongoDB.
 
 3. När du använder Docker så kan du redigera `docker-compose.yml` om du skulle vilja
 ändra någon port eller dsn.
@@ -126,6 +127,7 @@ vill ha den på ett annat ställe så går det bra.
 
 5. Om du använder Ubuntu och MongoDB inte startar, så kan det vara så att den vill att du har
 `data/db` i root.
+
 
 ### Docker
 

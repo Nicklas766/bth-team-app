@@ -2,3 +2,4 @@ node_modules
 misc
 coverage
 .nyc_output
+data
