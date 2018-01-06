@@ -38,7 +38,6 @@ input {
     width: 40%;
     margin: 5% 30%;
     background: #212528;
-    border: none;
     padding: 10px;
     font-size: 16px;
     margin-bottom: 15px;
@@ -79,7 +78,6 @@ input {
     height: 100%;
     background: black;
     background-size: 100%;
-    /* background-position: right -50px top 100px; */
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
@@ -115,8 +113,6 @@ footer {
 
 
 
-/*****************************************************************************/
-
 /* GAME */
 
 /* Containers */
@@ -142,11 +138,11 @@ footer {
 
 .chat {
     height: 75%;
-    background: #0B2E3B;
+    background: #0b2e3b;
     box-shadow: inset 1px 1px 4px 1px white;
     width: 100%;
     text-align: left;
-    border-radius: .3em;
+    border-radius: 0.3em;
 }
 
 .chat button {
@@ -157,7 +153,7 @@ footer {
     padding: 10px;
 }
 
-/* Action bar and spell bar*/
+/* Action bar and spell bar */
 
 .action-bar {
     display: flex;
@@ -171,7 +167,7 @@ footer {
     background: #1e2326;
     justify-content: center;
     width: 100%;
-    border-radius: .3em;
+    border-radius: 0.3em;
     box-shadow: inset 1px 1px 10px 1px;
 }
 
@@ -182,7 +178,6 @@ footer {
     margin: 0 2%;
     background: #1eaadd;
     background-image: none;
-    background-repeat: repeat;
     background-position-x: 0%;
     background-position-y: 0%;
     background-size: auto auto;
@@ -196,7 +191,7 @@ footer {
 .spell:hover {
     border: none;
     cursor: pointer;
-    box-shadow: inset 1px 1px 10px 1px orange
+    box-shadow: inset 1px 1px 10px 1px orange;
 }
 
 /* Health bar */
@@ -209,7 +204,7 @@ footer {
 }
 
 .health-bar p {
-    background: #C12127;
+    background: #c12127;
     width: 100%;
     margin: 0;
     height: 11.5%;
@@ -218,7 +213,7 @@ footer {
 }
 
 .health-bar p:first-of-type {
-    background: #29AEDF;
+    background: #29aedf;
 }
 
 .health-bar img {

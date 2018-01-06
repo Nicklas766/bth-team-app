@@ -1,4 +1,4 @@
-/*****************************************************************************/
+/* *************************************************************************** */
 
 /* PROFILE */
 
@@ -28,10 +28,8 @@
 
 .profile-nav a img {
     height: 110px;
-    margin-top: 10px
+    margin-top: 10px;
 }
-
-/*  */
 
 /* Community */
 
@@ -46,17 +44,16 @@
 .score-container {
     width: 29.5%;
     border-left: solid 1px silver;
-
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
 }
+
 th,
 td {
-
-    border: solid 1px #1EAADD;
+    border: solid 1px #1eaadd;
 }
 
 .room-container {

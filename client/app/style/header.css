@@ -5,7 +5,6 @@
     flex-wrap: wrap;
     background: #1e2326;
     width: 100%;
-    color: #ededee;
     height: 60px;
     color: #1eaadd;
     box-shadow: inset 1px 1px 4px 1px white;
@@ -17,6 +16,7 @@
 .header h1 {
     margin: 0;
 }
+
 .header a {
     display: flex;
     align-items: center;
@@ -24,7 +24,6 @@
     color: white;
     text-decoration: none;
 }
-
 
 /* Logo */
 
@@ -35,8 +34,8 @@
     align-items: center;
 }
 
-
 /* General */
+
 .header .general-choice {
     display: flex;
     flex-wrap: wrap;
@@ -48,7 +47,7 @@
     transition: 0.5s;
     height: 100%;
     width: 49.5%;
-    border-left: solid .5px silver;
+    border-left: solid 0.5px silver;
 }
 
 .header .general-choice a:hover {
@@ -56,21 +55,16 @@
     box-shadow: inset 1px 1px 30px 1px orange;
 }
 
-
 /* Login */
 
 .login-nav {
     display: flex;
     width: 20%;
-    box-shadow: inset 1px 1px 60px 1px #209ECB;
-    display: flex;
+    box-shadow: inset 1px 1px 60px 1px #209ecb;
     height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
-
 }
-
 
 .login-nav a {
     transition: 0.5s;
@@ -78,25 +72,19 @@
     height: 100%;
     display: flex;
     align-items: center;
-    border-left: solid .5px silver;
-
+    border-left: solid 0.5px silver;
 }
 
 .login-nav a:hover {
     font-size: 1.1em;
-    box-shadow: 1px 1px 20px 1px #209ECB;
-
+    box-shadow: 1px 1px 20px 1px #209ecb;
 }
-
 
 .header nav a:hover {
     transition: 0.2s;
     box-shadow: inset 1px 1px 60px 1px orange;
     font-size: 1.1em;
 }
-
-
-
 
 /* Content-header */
 
