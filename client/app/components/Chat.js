@@ -46,16 +46,19 @@ class Chat extends React.Component {
         return (
             <div className='chat'>
                 <div className='chat-messages'>
-                    {msgs}
+                    <div className='message-container'>
+                        {msgs}
+                    </div>
                 </div>
-                <textarea
-                    name={"text"}
-                    value={text}
-                    onChange={this.handleInputChange}
-                    placeholder={"Type your message here"}
-                    style={{width: "100%"}}
-                />
-                <button onClick={this.sendMessage}>Send message</button>
+                <div className='chat-input'>
+                    <textarea
+                        name={"text"}
+                        value={text}
+                        onChange={this.handleInputChange}
+                        placeholder={"Type your message here"}
+                    />
+                    <button onClick={this.sendMessage}>Send</button>
+                </div>
             </div>
         );
     }

@@ -36,7 +36,7 @@ class SpellSounds extends React.Component {
         }
         if (this.state.heal) {
             return (<Sound
-                url="../../music/heal.ogg"
+                url="../../music/heal.mp3"
                 playStatus={Sound.status.PLAYING}
             />);
         }
@@ -46,7 +46,7 @@ class SpellSounds extends React.Component {
                 playStatus={Sound.status.PLAYING}
             />);
         }
-        return <p> Welcome to the game </p>;
+        return <div />;
     }
 }
 

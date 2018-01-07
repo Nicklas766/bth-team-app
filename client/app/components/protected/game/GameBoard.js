@@ -8,6 +8,12 @@ import SpellSounds from './SpellSounds.js';
 import api from '../../../utils/api';
 
 
+const Waiting = () => (
+    <div style={{width: '100%'}}>
+        <h1>Waiting for player 2</h1>
+        <div className="loader">Loading...</div>
+    </div>
+);
 
 // Checks if updated player is current client, based on that
 // We know which client we need to update
@@ -113,20 +119,22 @@ class GameBoard extends React.Component {
             otherClient, gameResult, disconnected} = this.state;
 
         if (disconnected) {
-            return <p> The person playing with you disconnected! </p>;
+            return <h1> The person playing with you disconnected! </h1>;
         }
 
         if (gameResult === 'won') {
-            return <p> You won!!!! </p>;
+            return <h1> You won!!!! </h1>;
         }
         if (gameResult === 'lost') {
-            return <p> You lost!!! </p>;
+            return <h1> You lost!!! </h1>;
         }
         if (!this.state.started) {
-            return <div><p>Waiting for player 2</p></div>;
+            return <Waiting />;
         }
 
-        return (<div>
+
+
+        return (<div style={{width: '100%'}}>
             <h1>Game board</h1>
             <div className='boss-container'>
                 <Avatar image='../images/boss.jpg' playerObject={boss}/>

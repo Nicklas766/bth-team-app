@@ -27,11 +27,6 @@ Det behöver frontendutvecklarna tänka på.
 
 
 
-
-
-Jag använder socket.io
-
-
 även min egna `socket-mansion` modul som ska underlätta att skapa moduler och
 kod för realtids relaterad kod, men den skriver jag mer om längst ner.
 
@@ -41,23 +36,6 @@ En trevlig historia är att från början var
 modulen objektorienterad men då jag ville lära mig funktionell programmering
 så frågade jag min vän Anders "litemerafrukt" om tips och hjälp hur man bör tänka.
 Nu efter hans tips och vägledning så blev modulen funktionell.
-
-
-
-### Testning
-
------- IDEEEEEEEEEEEEEEEEEEE, gör så man kan göra "target" för vilken katalog
-som ska testas
-
-### Koden växer
-
-Vi vet att vår kod kommer att växa vid stora projekt. Som vi vet så vill vi
-försöka strukturera detta så bra som möjligt, så inte allt rasar.
-
-En sak som jag redan förslagit är TDD. Däremot så kan det
-bli många tester som också kan bli jobbigt att hålla reda på. Därav så har jag
-skapat ett npm-script så ni kan "npm run mocha DIN-KATALOG". I katalogen så
-har du alla dina tester som ser ut såhär "name.spec.js".
 
 
 
@@ -85,20 +63,6 @@ då servern sköter sessionen.
 Vi vet att alla vid routen /protected kommer man behöva vara inloggad för att nå
 via en GET, POST, förutsätt att vi inte med hjälp av SPA tar oss in på routens.
 Det behöver frontendutvecklarna tänka på.
-
-
-
-
-## Säkerhet
-
-När vi hanterar input så ska vi givetvis har "spärrar" i vår backend. Det jag
-menar med spärrar är att vi kontrollera så en POST inte har null värden eller
-tomma strängar. Absolut så ska vi ha spärrar i frontenden, men de spärrarna
-existerar för att vägleda användaren i rätt riktning.
-
-
-
-
 
 
 
@@ -130,14 +94,6 @@ för de react-komponenter eller backend-del som du INTE vill ska köras, så kan
 göra en sak i taget.
 
 
-## Flertal fel i npm test, hur kan jag göra processen lättare?
-
-MONGOD DB SETUP se till så i root
-
-
-## Eventuella fel
-
-mongodb startar inte, ubuntu den vill att du har den i root.
 
 
 ### TDD
@@ -158,35 +114,72 @@ som man vill hålla koll på, så jag skapade en "setup.js" kika gärna på den 
 att få ett hum hur det kan se ut.
 
 
-## Allmäna tips
 
 ## Redovisningtext
+
+### Applikationen
+
+Jag valde att göra optionella kraven för 4, 5, 6. Jag har lagt ner mycket tid på
+projektet för att jag siktar på högsta betyg. Jag har lagt in ljudeffekter, musik,
+tilltalande design och den har "det där lilla extra" känner jag.
+
+### Krav 4
 
 För mig så var det viktigt att inte skriva flera sidor för min readme, jag kände
 att det inte riktigt var det som uppgiften gick ut på. Jag ser det som en större
 skicklighet att med så liten text som möjligt förmedla mycket information. Därav så
 jag arbetade mycket med att se till så texten var välskriven, tydlig och insiktsfull
 till mitt team. Men jag ville även vara trovärdig och därav så försökte jag
-ta in fördelar och nackdelar som stöder mitt resonemang.
+ta in fördelar och nackdelar som stöder mina resonemang.
+
+### Krav 5
+
+Det finns mycket jag vill skriva om, men det blir för mycket text. Däremot så
+tar jag med det som jag känner förklarar varför jag bör få poäng för krav 5.
+Det fanns tre andra varianter av detta krav som jag valde.
+
+#### Driftsättning och hög kodtäckning
+Den första är att jag har driftsatt min applikation, detta var också en riktigt
+bra övning under kursens gång för mig personligen. Därefter så har min applikation en
+hög kodtäckning, detta är för att jag utvecklade enligt TDD, testerna är logiska och det finns rätt så
+många. Det finns ingen kodtäckning för klienten men jag förklarade rätt så utförligt
+varför i min readme, det var ett genomtänkt beslut till mitt team. I min README så
+känner jag att det är utförligt förklarat varför testerna görs och hur. Som grädde
+på moset så har båda mina moduler också 100% kodtäckning.
+
+#### Katalogstruktur
+Sedan så är klienten och serverns separerade genom att skapa en `/client` och
+`/backend`. Klienten har en egen package.json, mitt teams frontendutvecklare är
+fria att ladda ner nya dependencies till klienten utan att det får en effekt
+på vår server, det gör det även lättare att hålla reda på vart allt ligger.
+
+Klienten gör en npm run build som kommer skapa en bundle.js och index.html
+i vår `/backend/public`, detta gör så mitt teams backendutvecklare kan koda utan att
+behöva tänka på vilken effekt det får på klienten, då vi har separerar utvecklingen på
+dessa. Vi har endast en egen package.json i klienten för att vi komplierar det till en bundle
+som vi sedan låter vår server använda, därefter så har applikationen en "huvud package.json".
 
 
-Det var mycket text som jag behövde ta bort för att se till så texten inte blev
-otydlig.
+
+### Krav 6
+
+Länk till artikeln
 
 
+## Allmänt
 
-Det var mycket mer jag ville skriva om, t.ex min katalogstruktur är genomtänkt,
-men jag kände att då hade jag inte följt instruktionerna i kravspecen, så jag
-passar på att skriva lite extra här.
-
-
-
-
-krav 5:
-
-drifsatt, känner att jag skrev tydlig hur jag gör med testerna, som videon pratade om.
-skriv om sessionen express.
+Jag gör det lite svårare för mig själv än vad det behöver vara, men det är lite
+det jag älskar med programmering. Att kunna visuelera något och därefter skapa det,
+är en otrolig bra känsla. Det är nog lite slöseri med tid att fixa en HTML-knapps
+CSS i 1 timme, men det gör en stor skillnad.
 
 
-Jag känner att texten förklarar ifall det är lätt eller svårt och förklarar
-sedan lösningen.
+https://github.com/Nicklas766/bth-team-app
+
+
+## Feedback
+
+Jag är riktigt nöjd med kursen. Det är så otroligt mycket jag lärt mig under
+denna kursen.
+
+10/10

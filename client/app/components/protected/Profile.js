@@ -66,9 +66,9 @@ class Profile extends React.Component {
 
                 {!this.state.games &&
                  <div className='profile-nav'>
-                     {this.state.user.name}
+                     <h3> {this.state.user.name} </h3>
                      <h3> Wins: {this.state.user.wins}</h3>
-                     <h3> losses: {this.state.user.losses}</h3>
+                     <h3> Losses: {this.state.user.losses}</h3>
                  </div>}
             </div>
         );

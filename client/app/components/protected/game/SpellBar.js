@@ -62,12 +62,12 @@ class SpellBar extends React.Component {
     render() {
         if (!this.state.started) {
             return (<div className='spell-bar'>
-                <p> Game starts in 5 sec </p>
+                <h3> Game starts in 5 sec </h3>
             </div>);
         }
         if (!this.state.yourTurn) {
             return (<div className='spell-bar'>
-                <p> {this.state.friend} turn </p>
+                <h3> {this.state.friend} turn </h3>
             </div>);
         }
 

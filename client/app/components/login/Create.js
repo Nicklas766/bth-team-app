@@ -1,6 +1,7 @@
 var React = require('react');
 var api = require('../../utils/api');
-var Link = require('react-router-dom').Link;
+
+import { Link } from 'react-router-dom';
 
 import InputForm from './InputForm';
 

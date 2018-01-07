@@ -6,12 +6,11 @@ import RouteHandler from './RouteHandler';
 import Header from './parts/Header';
 import Footer from './parts/Footer';
 import LogoutButton from './parts/LogoutButton';
-
-
 /**
 * The login checker is a wrapper before our app we can send props to our app
 * so we can in our actual pages see if logged in or update the state of header.
 */
+
 
 class LoginChecker extends React.Component {
     constructor(props) {

@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 
-
 class App extends React.Component {
     render() {
         return (<BrowserRouter>
@@ -12,9 +11,9 @@ class App extends React.Component {
                 backgroundImage: "url(../images/knight-background.jpg)"
             }}>
                 <LoginChecker />
-
             </div>
-        </BrowserRouter>);
+        </BrowserRouter>
+        );
     }
 }
 

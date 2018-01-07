@@ -115,11 +115,11 @@ cd bth-team-app
 om du skulle vilja använda en annan DSN än `localhost`.
 
 2. `export DBWEBB_PORT=80` gör så servern kommer startas på port 80 istället för 1337,
-du får valfritt välja. Det är `- ./data/db:/data/db` som default, om du använder
-windows så kan du behöva ändra till `C:/data/db:/data/db` för MongoDB.
+du får valfritt välja.
 
 3. När du använder Docker så kan du redigera `docker-compose.yml` om du skulle vilja
-ändra någon port eller dsn.
+ändra någon port eller dsn. Det är `./data/db:/data/db` som default, om du använder
+windows så kan du behöva ändra till `C:/data/db:/data/db` för MongoDB.
 
 4. Om du inte använder docker så behöver du själv starta upp MongoDB. Tänk på att projektets
 data-katalog ligger i `/backend`. Det spelar dock ingen roll vart katalogen ligger, om du
@@ -155,6 +155,7 @@ npm test
 npm run mocha
 npm run eslint
 npm run eslint-fix
+npm run stylelint
 ```
 
 För att se kodtäckningen lokalt, öppnar du `/coverage` i en webbläsare.
@@ -198,7 +199,7 @@ npm start
 
 ## Testning
 
-##### Verktyg
+### Verktyg
 
 Följande verktyg och linters används för att testa koden, Mocha, nyc, stylelint,
 eslint, supertest, prop-types och concurrently.
@@ -225,12 +226,12 @@ så att jag kunde först köra olika `npm script` för `npm test`. Testsuiten bl
 
 Docker
 
-##### TDD
+### TDD
 
 En sak som jag vill att vårt team ska prova är TDD. Som kortfattat betyder att
 vi strävar att alltid skriva testerna innan vi skapar koden. Det gör vi då det oftast blir
 tydligare för sig själv och sina kollegor vad koden ska göra. För denna applikationen
-så kodade jag enligt TDD, därav så har jag en väligt hög kodtäckning för backenden.
+så kodade jag enligt TDD, därav så har jag en väldigt hög kodtäckning för backenden.
 
 För servern så anser jag att man bör och ska skriva testerna innan koden, iallafall en grund
 för tester. Då det är mycket smidigare att starta testerna än att starta
@@ -243,7 +244,7 @@ om hur vi ska gå tillväga där.
 
 
 
-##### Test för klienten
+### Test för klienten
 
 Med hjälp av webpack så uppdateras webbläsaren automatiskt när vi sparar en fil.
 Detta betyder att det är väldigt effektivt att skriva kod på det "gamla hederliga sättet"
@@ -265,7 +266,7 @@ Det kan även göra vår kod mer läsbar, då vi slipper i vissa fall kommentera
 vad komponenten gör, då komponentens namn och proptypes är tydliga.
 
 
-##### Docker
+### Docker
 
 Docker används både för utvecklandet och testerna. Vi kan se ifall våra tester
 fungerar i tre olika versioner av Node.
@@ -352,7 +353,7 @@ beslut tillsammans.
 
 ## Egen modul på npm
 
-#### NPM
+### NPM
 Då vi fokuserar på att skriva återanvändbar kod, så bör vi skapa moduler så
 gott det går. Detta underlättar även processen att skriva tester, då vi strävar att
 skapa så oberoende moduler som möjligt. NPM öppnar en värld av många olika
@@ -368,7 +369,7 @@ ska absolut använda sig av moduler då det är riktigt smidigt, men man ska
 även vara vaksam hur beroende sin applikation blir av något.
 
 
-#### Egna moduler
+### Egna moduler
 
 Jag vill gärna att vi kodat enligt modulär programmering. Jag har redan förklarat
 fördelarna med det, så jag visar nu två av mina egna moduler som jag skapade för
@@ -395,7 +396,7 @@ de var i sina egna repon, jag hoppas det övertalar er att moduler är värt att
 
 Så följande tekniker/verktyg föreslår jag:
 
-#### Utveckling:
+### Utveckling:
 * Express.js (server)
 * React (klient)
 * MongoDB
