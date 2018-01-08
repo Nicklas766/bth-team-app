@@ -3,7 +3,10 @@
 ### Applikationen
 
 Min applikation går ut på att man ska kunna logga in på ett konto för att
-spela ett spel med en annan spelare. Spelet går ut på att vinna över en boss.
+att kunna skapa ett spel som man sedan går med i,
+
+ Spelet går ut på att vinna över en boss med en annan spelare.
+
 Sedan så finns det ljudeffekter, musik, tilltalande design och den har "det där lilla extra"
 känner jag. Jag har lagt ner mycket tid på projektet för att jag siktar på högsta betyg.
 

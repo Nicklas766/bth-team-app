@@ -1,4 +1,3 @@
-Text här
 [![Build Status](https://travis-ci.org/Nicklas766/bth-team-app.svg?branch=master)](https://travis-ci.org/Nicklas766/bth-team-app)
 [![Maintainability](https://api.codeclimate.com/v1/badges/427f5175b5f90bb75cc1/maintainability)](https://codeclimate.com/github/Nicklas766/bth-team-app/maintainability)
 [![Code Coverage](https://scrutinizer-ci.com/g/Nicklas766/bth-team-app/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Nicklas766/bth-team-app/?branch=master)
@@ -18,60 +17,54 @@ Jag skapar en applikation med teknikerna och riktlinjerna jag vill införa.
 Applikationen är till för att hjälpa mig presentera dessa nya tekniker åt mina
 medarbetare.
 
-## EDIT??
-Idén är att jag arbetar som en arkitekt och teamledare och ska leda vägen för
-nya tekniker i mitt team, som vi kan använda i våra framtida stora projekt.
 
-Denna applikation används som utvärderings- och utbildningsmaterial för mitt team.
+## (Nu går jag in i rollen som teamledare)
 
+## Applikationen
 
-## Nu går jag in i rollen som teamledare
-
-## Applikationen och teknikval
-
-#### Kravbilden:
-
-För att beskriva features tydligt, så har jag skapat några [user stories](https://en.wikipedia.org/wiki/User_story) nedan,
-sedan så valde jag att göra några, vissa exkluderade jag medvetet för att
-jag ansåg att de funktionerna hade varit trevliga att ha, men inte nödvändiga.
+För att göra det lättare för mig att förklara de nya teknikerna som jag gärna
+vill införa, så har jag skapat en applikation som exempel. För att beskriva
+just denna applikationens features tydligt, så har jag skapat några [user stories](https://en.wikipedia.org/wiki/User_story)
 
 
-|        Feature         | Som användare vill jag                                       | För att                                                        | Valda |
-|:----------------------:| ------------------------------------------------------------ | -------------------------------------------------------------- |:-----:|
-|     Kontohantering     |                                                              |                                                                |       |
-|           1            | Kunna skapa ett konto som sparas i en NoSQL-databas          | Kunna logga in                                                 |       |
-|           2            | Kunna logga in på min sparade användare                      | Få tillgång till min profilsida och kunna gå med i ett spel    |       |
-|           3            | Kunna välja mellan tre bilder som jag kan använda            | Det ska visas när man startat ett spel                         |   x   |
-|                        |                                                              |                                                                |       |
-|        -------         | ------------------------------------------------------------ | -------------------------------------------------------------- |  ---  |
-| Community (innan spel) |                                                              |                                                                |       |
-|           3            | Kunna skapa ett nytt spel                                    | Kunna gå med i ett spel                                        |       |
-|           4            | Kunna gå med i ett spel med en annan användare               | Kunna Spela ett 2 players versus 1 boss spel                   |       |
-|                        |                                                              |                                                                |       |
-|        -------         | ------------------------------------------------------------ | -------------------------------------------------------------- |  ---  |
-|          Spel          |                                                              |                                                                |       |
-|           1            | Kunna attackera bossen                                       | Kunna vinna spelet med den andra användaren                    |       |
-|           2            | Kunna kasta en trollformel                                   | För att antingen ge hp till mig själv eller den andra spelaren |       |
-|           3            | Vänta på andra spelaren efter jag gjort mitt val av handling | Den andra spelaren ska kunna göra en action                    |       |
-|           4            | Ha health points och motta en attack från bossen             | Kunna förlora                                                  |       |
-|           5            | Kunna chatta med den andra användaren                        | Diskutera taktik eller chatta allmänt                          |       |
-|                        |                                                              |                                                                |       |
-|           6            | Att spelet avbryts om jag disconnecterar                     | Den andra spelaren ska veta                                    |       |
-|                        |                                                              |                                                                |       |
-|                        |                                                              |                                                                |       |
-|        Allmänt         |                                                              |                                                                |       |
-|                        | Inte kunna nå routen /protected utan att vara inloggad       | Inte kunna starta ett spel utan namn                           |       |
-|                        | Att headern visar mitt namn och länk till profilsida         | Veta ifall jag är inloggad och når min profilsida              |       |
-|                        |                                                              |                                                                |       |
+|  Feature  | Som användare vill jag                                       | För att                                                        | Valda |
+|:---------:|:------------------------------------------------------------ |:-------------------------------------------------------------- |:-----:|
+|   Konto   |                                                              |                                                                |       |
+|     1     | Kunna skapa ett konto som sparas i en NoSQL-databas          | Kunna logga in                                                 |  ✅   |
+|     2     | Kunna logga in på min sparade användare                      | Få tillgång till min profilsida och kunna gå med i ett spel    |  ✅   |
+|     3     | Kunna välja mellan tre bilder som jag kan använda            | Det ska visas när man startat ett spel                         |  ❌   |
+|     4     | Kunna se mina result på profilsidan                          | Kunna hur många jag vunnit eller förlorat                      |  ✅   |
+| Community |                                                              |                                                                |       |
+|     1     | Kunna skapa ett nytt spel                                    | Kunna gå med i ett spel                                        |  ✅   |
+|     2     | Kunna gå med i ett spel med en annan användare               | Kunna spela ett 2 players versus 1 boss spel                   |  ✅   |
+|     3     | Kunna se en lista med alla användare                         | Kunna se hur många poäng alla har                              |  ✅   |
+|     4     | Se en chatt innan jag skapar ett spel                        | Kunna chatta med andra innan                                   |  ❌   |
+|   Spel    |                                                              |                                                                |       |
+|     1     | Kunna attackera bossen                                       | Kunna vinna spelet med den andra användaren                    |  ✅   |
+|     2     | Kunna kasta en trollformel                                   | För att antingen ge hp till mig själv eller den andra spelaren |  ✅   |
+|     3     | Vänta på andra spelaren efter jag gjort mitt val av handling | Den andra spelaren ska kunna göra en action                    |  ✅   |
+|     4     | Ha health points och motta en attack från bossen             | Kunna förlora                                                  |  ✅   |
+|     5     | Kunna chatta med den andra användaren                        | Diskutera taktik eller chatta allmänt                          |  ✅   |
+|     6     | Att spelet avbryts om jag disconnecterar                     | Den andra spelaren ska veta                                    |  ✅   |
+|           |                                                              |                                                                |       |
+|           |                                                              |                                                                |       |
+|  Allmänt  |                                                              |                                                                |       |
+|     1     | Inte kunna nå routen /protected utan att vara inloggad       | Inte kunna starta ett spel utan namn                           |  ✅   |
+|     2     | Att headern visar mitt namn och länk till profilsida         | Veta ifall jag är inloggad och når min profilsida              |  ✅   |
+|     3     | Höra ett ljudeffekt när jag attackerar                       | Få en viss inlevelse i spelet                                  |  ✅   |
+|     4     | Höra musik på första sidan och inlogg                        | Få en viss inlevelse i spelet                                  |  ✅   |
 
 
-Utöver kraven ovan så la jag till lite musik och ljudeffekter.
 
-#### Hur och varför:
+--------------------------------------------------------------------------------
+## Teknikval
 
-För att lösa dessa krav så används React, Express.
+För att lösa dessa krav som jag skapade för mig själv, så använde jag React
+och Express. Min idé är att vi ska börja använda dessa ramverk i vår egna miljö,
+nedan så har jag skrivit, varför och vad de är för något.
 
-#### React
+
+### React
 
 React är ett JavaScript-bibliotek skapat av Facebook. [React](https://reactjs.org/)
 hjälper oss att se till så koden är hållbar då man kan återanvända komponenter.
@@ -91,7 +84,7 @@ vi bör använda det som finns tillgängligt. Men absolut så är det viktigt at
 grunderna i JavaScript, men det är en helt annan fråga.
 
 
-#### Express
+### Express
 
 [Express](http://expressjs.com/) är ett ramverk för Node.js. Då ramverket är skapad
 med vanlig JavaScript så slipper vi skifta mellan olika programmeringspråk när vi
@@ -208,30 +201,25 @@ npm start
 
 ### Verktyg
 
-Följande verktyg och linters används för att testa koden, Mocha, nyc, stylelint,
-eslint, supertest, prop-types och concurrently.
+Följande verktyg och linters används för att testa koden, *Mocha*, *nyc*, *stylelint*,
+*eslint*, *supertest*, *prop-types* och *concurrently*.
 
 Mocha är ett test ramverk som gör det enkelt att testa koden, då den ger oss en
-färdig byggd struktur som gör så vi kan snabbt testa vår kod. Sedan för att få
+färdigbyggd struktur som gör så vi kan snabbt testa vår kod. Sedan för att få
 kodtäckning så används nyc, "[istanbul](https://istanbul.js.org/)".
 
 När vi vill testa en GET eller POST, så använder vi [supertest](https://www.npmjs.com/package/supertest).
-Den hjälper oss att göra http-requests till vår app.
+Den hjälper oss att göra http-requests till vår app. För klienten så använder vi [proptypes](https://www.npmjs.com/package/prop-types),
+som kontrollerar så att vi skickar rätt props till våra react-komponenter.
 
-För klienten så använder vi [proptypes](https://www.npmjs.com/package/prop-types)
-kontrollera så vi skickar rätt props till våra react-komponenter.
-
-Linters användes för projektet, där användes [eslint](https://eslint.org/) och då vi har en react-klient  
+Linters användes till projektet, där användes [eslint](https://eslint.org/) och då vi har en react-klient
 som har en JSX-syntax så används även pluginet [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
-Sedan så används även [stylelint](https://www.npmjs.com/package/stylelint) som
-CSS linter.
+Sedan så används även [stylelint](https://www.npmjs.com/package/stylelint) som CSS linter.
 
 Sist men inte minst, används [concurrently](https://www.npmjs.com/package/concurrently).
 Den låter oss köra flera kommandon samtidigt i vår terminal, som gjorde
 så att jag kunde först köra olika `npm script` för `npm test`. Testsuiten blev,
 `"test": "concurrently \"npm run mocha\" \"npm run stylelint\" \"npm run eslint\"",`
-
-Docker
 
 ### TDD
 
@@ -273,17 +261,11 @@ Det kan även göra vår kod mer läsbar, då vi slipper i vissa fall kommentera
 vad komponenten gör, då komponentens namn och proptypes är tydliga.
 
 
-### Docker
-
-Docker används både för utvecklandet och testerna. Vi kan se ifall våra tester
-fungerar i tre olika versioner av Node.
-
-
 --------------------------------------------------------------------------------
 
 ## Kedja för Continuous integration
 
-CI-kedjan består av tjänsterna Travis, Scrutinizer, CodeClimate.
+CI-kedjan består av tjänsterna *Travis*, *Scrutinizer*, *CodeClimate*.
 
 Jag valde dessa tre för att de alla erbjuder något eget. Travis erbjuder en riktigt
 tydlig översikt ifall vår "build" fungerar. Scrutinizer sköter kodtäckningen, medan
@@ -357,6 +339,7 @@ när databasen växer, itsället för att uppgradera vårt befintliga system. Me
 andra ord, så behöver vi veta vad vårt projekt är, innan vi kan göra ett logiskt
 beslut tillsammans.
 
+--------------------------------------------------------------------------------
 
 ## Egen modul på npm
 
@@ -398,6 +381,17 @@ det var absolut lite arbete att fixa, men det var mycket skönt och smidigt då
 de var i sina egna repon, jag hoppas det övertalar er att moduler är värt att använda.
 
 
+
+--------------------------------------------------------------------------------
+
+## En artikel om React
+
+Jag skapade en artikel angående React, idén men artikeln är att ge er en kort
+introduktion till vad React är och vad den används till,
+
+https://dbwebb.se/forum/viewtopic.php?f=60&t=7215
+
+--------------------------------------------------------------------------------
 
 ## Sammanfattning av tekniker
 
