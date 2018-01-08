@@ -1,4 +1,4 @@
-## Redovisningtext
+## Redovisningtext.
 
 
 ### Till rättaren
