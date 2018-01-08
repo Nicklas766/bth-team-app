@@ -4,31 +4,25 @@
 ### Till rättaren
 
 Jag skulle verkligen uppskatta om du har ljudet på när du rättar, jag har lagt in
-musik och ljudeffekter. Ljudeteffekterna fungerar vi spelet men tänk på att
-stänga av den andra webbläsarens ljud
+musik och ljudeffekter. Kan vara rätt så högt så sänk gärna volumen innan. Jag kom
+inte på ett bra namn, så det fick bli "Games".
 
-Jag kom inte på ett bra namn, så det fick bli "Games".
+Ljudeffekterna fungerar i spelet, jag har provat med min macbook och stationära
+samtidigt och då fungerar det, av någon anledning så kan det bli dubbel när
+man använder endast en dator (jag hade stängt av ljudet på ena webbläsaren).
 
 Jag kommer visa i min redovisning i hangout, men vänligen tänk på att ha två
-olika kontot när man loggar in, jag har skapat player1 och player2 som du kan
-logga in med player1 player2 lösenord.
+olika kontot när man loggar in och startar ett spel.
 
-Jag har spelat med en annan person och då fungerar ljudet perfekt, men det
-kan bli dubbel när man spelet med sig själv, så använd gärna två olika datorer,
-om det är möjligt.
-
+http://165.227.232.212
 
 ### Applikationen
 
 Min applikation går ut på att man ska kunna logga in på ett konto för att
-att kunna skapa ett spel som man sedan går med i,
+att kunna skapa ett spel som man sedan går med i. Spelet går ut på att vinna
+över en boss med en annan spelare. Jag har lagt ner mycket tid på projektet
+för att jag siktar på högsta betyg. Sedan så har jag även valt att göra optionella kraven för 4, 5, 6.
 
- Spelet går ut på att vinna över en boss med en annan spelare.
-
-Sedan så finns det ljudeffekter, musik, tilltalande design och den har "det där lilla extra"
-känner jag. Jag har lagt ner mycket tid på projektet för att jag siktar på högsta betyg.
-
-Jag valde att göra optionella kraven för 4, 5, 6.
 https://github.com/Nicklas766/bth-team-app
 
 ### Krav 4
@@ -53,8 +47,9 @@ bra övning under kursens gång för mig personligen. Därefter så har min appl
 hög kodtäckning, detta är för att jag utvecklade enligt TDD, testerna är logiska och det finns rätt så
 många. Det finns ingen kodtäckning för klienten men jag förklarade rätt så utförligt
 varför i min readme, det var ett genomtänkt beslut till mitt team. I min README så
-känner jag att det är utförligt förklarat varför testerna görs och hur. Som grädde
-på moset så har båda mina moduler också 100% kodtäckning.
+känner jag att det är utförligt förklarat varför testerna görs och hur.
+
+Som grädde på moset så har båda mina moduler också 100% kodtäckning.
 
 #### Katalogstruktur
 
@@ -69,10 +64,6 @@ behöva tänka på vilken effekt det får på klienten, då vi har separerar utv
 dessa. Vi har endast en egen package.json i klienten för att vi komplierar det till en bundle
 som vi sedan låter vår server använda, därefter så har applikationen en "huvud package.json".
 
-
-Jag har lagt in musik och ljudeffekter så skulle uppskatta om ni har ljudet på
-när ni rättar, kan vara rätt så högt så sänk gärna volumen innan.
-
 ### Krav 6
 
 Jag valde att göra en artikel som handlar om "en kort introduktion till react".
@@ -84,9 +75,9 @@ mitt team, https://dbwebb.se/forum/viewtopic.php?f=60&t=7215
 ## Allmänt
 
 Om jag hade valt att göra en väldigt simpel applikation så hade nog projektet
-varit rätt så lätt. Men jag vill utmana mig själv, pusha mig själv att inte
-nöja mig. En sak jag älskar med programmering är att kunna visualisera något
-och därefter göra det till verklighet. Det är en otrolig bra känsla.
+varit rätt så lätt. Men jag vill utmana mig själv, pusha mig själv. En sak jag
+älskar med programmering är att kunna visualisera något och därefter göra det till
+verklighet. Det är en otrolig bra känsla.
 
 Jag är inte riktigt säker hur lång tid projektet tog, jag har iallafall suttit
 14 timmar varje dag den sista veckan. Jag gjorde det lättare för mig själv
@@ -98,7 +89,7 @@ fint med hjälp av en SetTimeout mellan de två. Detta tog väldigt lång tid at
 till, men när jag väl hade gjort det så kunde jag lätt lägga till t.ex ljudeffekter.
 
 Projektet var rimligt och det var intressant med att fokusera mer på texten i
-detta projekt. Då det tvingar en att veta vad man skriver om innan man börjar skriva.
+detta projekt. Då det tvingar en att veta vad man något är innan man börjar skriva.
 
 
 ## Feedback
@@ -114,3 +105,10 @@ kan inte komma på något som jag störde mig på.
 
 Det är så otroligt mycket jag lärt mig under denna kursen, jag kommer
 prata mycket väl om den. 10/10
+
+
+http://165.227.232.212
+https://github.com/Nicklas766/bth-team-app
+https://dbwebb.se/forum/viewtopic.php?f=60&t=7215
+https://github.com/Nicklas766/mongo-connecter
+https://github.com/Nicklas766/socket-mansion
