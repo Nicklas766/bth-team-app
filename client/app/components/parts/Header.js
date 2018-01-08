@@ -36,7 +36,7 @@ class Header extends React.Component {
             </div>
 
             <div className='general-choice'>
-                <NavLink exact activeClassName='active' to='/about'> Players </NavLink>
+                <NavLink exact activeClassName='active' to='/players'> Players </NavLink>
                 <NavLink exact activeClassName='active' to='/about'> About </NavLink>
             </div>
 

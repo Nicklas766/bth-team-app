@@ -6,6 +6,7 @@ import Sound from 'react-sound';
 // Components
 import Home from './page/Home';
 import About from './page/About';
+import Players from './page/Players';
 import Login from './login/Login';
 import Create from './login/Create';
 // Protected paths in express.js, all who require socket.io
@@ -35,6 +36,7 @@ class RouteHandler extends React.Component {
             <Switch>
                 <Route exact path='/' component={HomePage} />
                 <Route exact path='/about' component={About} />
+                <Route exact path='/players' component={Players} />
                 <Route exact path='/create' component={Create} />
                 <Route exact path='/login' component={() =>
                     <Audio url={'../music/bensound-epic.mp3'}><Login login={login}/></Audio>}

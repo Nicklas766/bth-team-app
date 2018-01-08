@@ -386,7 +386,7 @@ de var i sina egna repon, jag hoppas det övertalar er att moduler är värt att
 
 ## En artikel om React
 
-Jag skapade en artikel angående React, idén men artikeln är att ge er en kort
+Jag skapade en artikel angående React, idén med artikeln är att ge er en kort
 introduktion till vad React är och vad den används till,
 
 https://dbwebb.se/forum/viewtopic.php?f=60&t=7215

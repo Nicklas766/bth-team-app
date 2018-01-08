@@ -39,7 +39,10 @@ class InputForm extends React.Component {
 InputForm.propTypes = {
     name: PropTypes.string.isRequired,
     pass: PropTypes.string.isRequired,
-    repeat: PropTypes.string,
+    repeat: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.bool
+    ]),
     handleChange: PropTypes.func.isRequired,
     onSelect: PropTypes.func.isRequired,
     buttonText: PropTypes.string.isRequired

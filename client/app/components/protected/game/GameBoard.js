@@ -15,6 +15,17 @@ const Waiting = () => (
     </div>
 );
 
+const EndGame = (props) => (
+    <div style={{width: '100%'}}>
+        <h1>{props.text}</h1>
+    </div>
+);
+
+EndGame.propTypes = {
+    text: PropTypes.string.isRequired
+};
+
+
 // Checks if updated player is current client, based on that
 // We know which client we need to update
 const getClientKey = (currClient, updatedPlayer) => {
@@ -119,20 +130,17 @@ class GameBoard extends React.Component {
             otherClient, gameResult, disconnected} = this.state;
 
         if (disconnected) {
-            return <h1> The person playing with you disconnected! </h1>;
+            return <EndGame text={'The person playing with you disconnected!'} />;
         }
-
         if (gameResult === 'won') {
-            return <h1> You won!!!! </h1>;
+            return <EndGame text={'You won!'} />;
         }
         if (gameResult === 'lost') {
-            return <h1> You lost!!! </h1>;
+            return <EndGame text={'You lost!'} />;
         }
         if (!this.state.started) {
             return <Waiting />;
         }
-
-
 
         return (<div style={{width: '100%'}}>
             <h1>Game board</h1>

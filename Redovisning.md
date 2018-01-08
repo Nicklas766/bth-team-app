@@ -1,5 +1,23 @@
 ## Redovisningtext
 
+
+### Till rättaren
+
+Jag skulle verkligen uppskatta om du har ljudet på när du rättar, jag har lagt in
+musik och ljudeffekter. Ljudeteffekterna fungerar vi spelet men tänk på att
+stänga av den andra webbläsarens ljud
+
+Jag kom inte på ett bra namn, så det fick bli "Games".
+
+Jag kommer visa i min redovisning i hangout, men vänligen tänk på att ha två
+olika kontot när man loggar in, jag har skapat player1 och player2 som du kan
+logga in med player1 player2 lösenord.
+
+Jag har spelat med en annan person och då fungerar ljudet perfekt, men det
+kan bli dubbel när man spelet med sig själv, så använd gärna två olika datorer,
+om det är möjligt.
+
+
 ### Applikationen
 
 Min applikation går ut på att man ska kunna logga in på ett konto för att
