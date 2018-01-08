@@ -20,8 +20,11 @@ http://165.227.232.212
 
 Min applikation går ut på att man ska kunna logga in på ett konto för att
 att kunna skapa ett spel som man sedan går med i. Spelet går ut på att vinna
-över en boss med en annan spelare. Jag har lagt ner mycket tid på projektet
-för att jag siktar på högsta betyg. Sedan så har jag även valt att göra optionella kraven för 4, 5, 6.
+över en boss med en annan spelare. Jag tog grunden ur mitt redovisa-repo och
+tog allt jag lärt mig från kursen och "började på nytt" med en bra grund.
+
+Jag har lagt ner mycket tid på projektet för att jag siktar på högsta betyg. Sedan
+så har jag även valt att göra optionella kraven för 4, 5, 6.
 
 https://github.com/Nicklas766/bth-team-app
 
