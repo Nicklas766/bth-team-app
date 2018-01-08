@@ -69,7 +69,9 @@ class Login extends React.Component {
                     buttonText={'Login'}
                 />
 
-                <Link to='/create'>Create a user</Link>
+                <Link style={{
+                    margin: "24px 0", color: "#1eaadd", display: 'block'
+                }} to='/create'>Create a user</Link>
 
             </div>
         );

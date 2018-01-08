@@ -72,7 +72,10 @@ class Create extends React.Component {
                     handleChange={this.handleChange}
                     buttonText={'Create'}
                 />
-                <Link to='/login'>Login</Link>
+                <Link style={{
+                    margin: "24px 0", color: "#1eaadd", display: 'block'
+                }}
+                to='/login'>Login</Link>
             </div>
         );
     }

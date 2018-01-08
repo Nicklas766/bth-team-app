@@ -15,7 +15,7 @@ var protectedRoutes = require('./routes/protected');
 var app = express();
 
 // app.use for favicon and parsers
-app.use(favicon(path.join(__dirname, 'public/images', 'monitor.png')));
+app.use(favicon(path.join(__dirname, 'public/images', 'helmet.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
